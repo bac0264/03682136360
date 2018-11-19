@@ -10,7 +10,9 @@ public class LineCreator : MonoBehaviour
     Line activeLine;
     public GameObject lineContainer;
     bool touching;
-    Vector3 temp;
+    Vector3 temp; // vị trí update
+    Vector3 _temp; // camera update 
+    Vector3 __temp; // giữ input mouseclick
     /*void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -36,30 +38,39 @@ public class LineCreator : MonoBehaviour
         lineGO = Instantiate(linePrefab, lineContainer.transform); // khởi tạo line
         temp = Camera.main.WorldToScreenPoint(new Vector3(0,Camera.main.transform.position.y + 150f, Camera.main.transform.position.z)); // Vị trí của rắn                                                                            
     }
-    void FixedUpdate()
+    void Update()
     {
+        processing();
+    }
+    void processing()
+    {
+        _temp = Camera.main.transform.position;
+        _temp.y += 0.15f;
+        Camera.main.WorldToScreenPoint(_temp);
+        Camera.main.transform.position = _temp;
         //  if (activeLine.lineRenderer.positionCount >= 2)
 
         // Khi không touching sẽ Update theo vị trí cuối cùng
-        if (!touching)
-        {
-            //updateLine(temp);
-            if (Input.GetMouseButtonDown(0) && !touching)
+       
+            if (!touching)
             {
-                touching = true;
+                if (Input.GetMouseButtonDown(0) && !touching)
+                {
+                    touching = true;
+                }
             }
-        }
-        else
-        {
-            temp = Vector3.Lerp(temp, Input.mousePosition, 0.1f);
-            if (Input.GetMouseButtonUp(0))
+            else
             {
-                touching = false;
-                Debug.Log("index: " + (activeLine.lineRenderer.GetPosition(activeLine.lineRenderer.positionCount - 1)));
-                touchEnd(activeLine.lineRenderer.GetPosition(activeLine.lineRenderer.positionCount - 1));
+                __temp = Input.mousePosition;
+                temp = Vector3.Lerp(temp, __temp, 0.1f);
+                if (Input.GetMouseButtonUp(0))
+                {
+                    touching = false;
+                   // Debug.Log("index: " + (activeLine.lineRenderer.GetPosition(activeLine.lineRenderer.positionCount - 1)));
+                    touchEnd(activeLine.lineRenderer.GetPosition(activeLine.lineRenderer.positionCount - 1));
+                }
             }
-        }
-        touchHold(temp);
+       
         if (Input.touchCount > 0)
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
@@ -69,7 +80,8 @@ public class LineCreator : MonoBehaviour
             }
             if (Input.GetTouch(0).phase == TouchPhase.Moved)
             {
-                touchHold(Input.GetTouch(0).position);
+                __temp = Input.GetTouch(0).position;
+                temp = Vector3.Lerp(temp, __temp, 0.1f);
             }
             if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
@@ -77,14 +89,15 @@ public class LineCreator : MonoBehaviour
                 touchEnd(Input.GetTouch(0).position);
             }
         }
+        touchHold(temp, __temp);
     }
     void touchBegin(Vector2 screenPos)
     {
 
     }
-    void touchHold(Vector2 screenPos)
+    void touchHold(Vector2 screenPos, Vector2 __temp)
     {
-        updateLine(screenPos);
+        updateLine(screenPos, __temp);
     }
     void touchEnd(Vector2 screenPos)
     {
@@ -92,7 +105,7 @@ public class LineCreator : MonoBehaviour
         temp = Camera.main.WorldToScreenPoint(screenPos);
 
     }
-    void updateLine(Vector2 screenPos)
+    void updateLine(Vector2 screenPos, Vector2 __temp)
     {
         // update Line khi giữ chuột
         activeLine = lineGO.GetComponent<Line>();
@@ -100,9 +113,10 @@ public class LineCreator : MonoBehaviour
         if (activeLine != null)
         {
             // vị trí mới
-            screenPos.y = Camera.main.transform.position.y;
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(screenPos);
-            activeLine.UpdateLine(mousePos);
+            screenPos.y = _temp.y;
+            screenPos.x = Camera.main.ScreenToWorldPoint(screenPos).x;
+            //Vector2 mousePos = Camera.main.ScreenToWorldPoint(screenPos);
+            activeLine.UpdateLine(screenPos, __temp);
         }
     }
 }

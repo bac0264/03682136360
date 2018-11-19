@@ -12,8 +12,5 @@ public class CameraMan : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 temp = Camera.main.transform.position;
-        temp.y += 0.1f;
-        Camera.main.transform.position = temp;
     }
 }

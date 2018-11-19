@@ -72,7 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 120888409100223432}
   edgeCol: {fileID: 68460145146971036}
-  snakeHead: {fileID: 1976011730673136, guid: fb14624716d0cde49b5f6b07f32c723e, type: 2}
+  snakeHead: {fileID: 1325307795154672, guid: 98b7d3a1af8d4044ea1c39a1eb309cb1, type: 2}
 --- !u!120 &120888409100223432
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -88,7 +88,7 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 164a22605d788c44c9d82bf0013446df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
