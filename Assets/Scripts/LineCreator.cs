@@ -12,7 +12,8 @@ public class LineCreator : MonoBehaviour
     bool touching;
     Vector3 temp; // vị trí update
     Vector3 _temp; // camera update 
-    Vector3 __temp; // giữ input mouseclick
+    Vector3 start = Vector3.zero;
+    Vector3 end;
     /*void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -36,7 +37,7 @@ public class LineCreator : MonoBehaviour
     private void Start()
     {
         lineGO = Instantiate(linePrefab, lineContainer.transform); // khởi tạo line
-        temp = Camera.main.WorldToScreenPoint(new Vector3(0,Camera.main.transform.position.y + 150f, Camera.main.transform.position.z)); // Vị trí của rắn                                                                            
+        temp = Camera.main.WorldToScreenPoint(new Vector3(0, Camera.main.transform.position.y + 150f, Camera.main.transform.position.z)); // Vị trí của rắn                                                                            
     }
     void Update()
     {
@@ -51,53 +52,75 @@ public class LineCreator : MonoBehaviour
         //  if (activeLine.lineRenderer.positionCount >= 2)
 
         // Khi không touching sẽ Update theo vị trí cuối cùng
-       
-            if (!touching)
+        if (!touching)
+        {
+            if (Input.GetMouseButtonDown(0))
             {
-                if (Input.GetMouseButtonDown(0) && !touching)
-                {
-                    touching = true;
-                }
+                touching = true;
+                start = Input.mousePosition ;
+
             }
-            else
+        }
+        else
+        {
+            end = Input.mousePosition;
+            if (end != start) {
+               // temp = Vector3.Lerp(temp, Input.mousePosition, 0.1f);
+                float distance = end.x - start.x;
+                Vector3 vectorDistance = end - start;
+                Debug.Log("distance: " + distance);
+                temp.x += distance;
+                //temp = Vector3.Lerp(temp, end, 0.5f/distance);
+                Debug.Log("Temp: " + temp);
+                start = end;
+            }
+            if (Input.GetMouseButtonUp(0))
             {
-                __temp = Input.mousePosition;
-                temp = Vector3.Lerp(temp, __temp, 0.1f);
-                if (Input.GetMouseButtonUp(0))
-                {
-                    touching = false;
-                   // Debug.Log("index: " + (activeLine.lineRenderer.GetPosition(activeLine.lineRenderer.positionCount - 1)));
-                    touchEnd(activeLine.lineRenderer.GetPosition(activeLine.lineRenderer.positionCount - 1));
-                }
+                end = start;
+                touching = false;
+                // Debug.Log("index: " + (activeLine.lineRenderer.GetPosition(activeLine.lineRenderer.positionCount - 1)));
+                touchEnd(activeLine.lineRenderer.GetPosition(activeLine.lineRenderer.positionCount - 1));
             }
-       
+        }
+
         if (Input.touchCount > 0)
         {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 touching = true;
                 touchBegin(Input.GetTouch(0).position);
+                start = Input.GetTouch(0).position;
             }
             if (Input.GetTouch(0).phase == TouchPhase.Moved)
             {
-                __temp = Input.GetTouch(0).position;
-                temp = Vector3.Lerp(temp, __temp, 0.1f);
+                end = Input.GetTouch(0).position;
+                if (end != start)
+                {
+                    // temp = Vector3.Lerp(temp, Input.mousePosition, 0.1f);
+                    float distance = end.x - start.x;
+                    Vector3 vectorDistance = end - start;
+                    Debug.Log("distance: " + distance);
+                    temp.x += distance;
+                    //temp = Vector3.Lerp(temp, end, 0.5f/distance);
+                    Debug.Log("Temp: " + temp);
+                    start = end;
+                }
             }
             if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
                 touching = false;
-                touchEnd(Input.GetTouch(0).position);
+                touchEnd(activeLine.lineRenderer.GetPosition(activeLine.lineRenderer.positionCount - 1));
             }
         }
-        touchHold(temp, __temp);
+        touchHold(temp);
     }
     void touchBegin(Vector2 screenPos)
     {
 
     }
-    void touchHold(Vector2 screenPos, Vector2 __temp)
+    void touchHold(Vector2 screenPos)
     {
-        updateLine(screenPos, __temp);
+        updateLine(screenPos);
     }
     void touchEnd(Vector2 screenPos)
     {
@@ -105,7 +128,7 @@ public class LineCreator : MonoBehaviour
         temp = Camera.main.WorldToScreenPoint(screenPos);
 
     }
-    void updateLine(Vector2 screenPos, Vector2 __temp)
+    void updateLine(Vector2 screenPos)
     {
         // update Line khi giữ chuột
         activeLine = lineGO.GetComponent<Line>();
@@ -116,7 +139,7 @@ public class LineCreator : MonoBehaviour
             screenPos.y = _temp.y;
             screenPos.x = Camera.main.ScreenToWorldPoint(screenPos).x;
             //Vector2 mousePos = Camera.main.ScreenToWorldPoint(screenPos);
-            activeLine.UpdateLine(screenPos, __temp);
+            activeLine.UpdateLine(screenPos);
         }
     }
 }

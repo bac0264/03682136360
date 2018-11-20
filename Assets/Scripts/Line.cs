@@ -16,21 +16,21 @@ public class Line : MonoBehaviour
     {
         snake = Instantiate(snakeHead);
     }
-    public void UpdateLine(Vector2 mousePos, Vector2 __temp)
+    public void UpdateLine(Vector2 mousePos)
     {
         if (points == null)
         {
             points = new List<Vector2>();
-            SetPoint(mousePos, __temp);
+            SetPoint(mousePos);
             return;
         }
 
         if (Vector2.Distance(lineRenderer.GetPosition(lineRenderer.positionCount - 1), mousePos) > 0.1f)
-            SetPoint(mousePos, __temp);
+            SetPoint(mousePos);
     }
 
     // Set vị trí cho line 
-    void SetPoint(Vector2 point, Vector2 __temp)
+    void SetPoint(Vector2 point)
     {
         points.Add(point);
         // Nếu rắn dài hơn 80 point thì xóa phần tử đầu đi
@@ -44,9 +44,12 @@ public class Line : MonoBehaviour
         {
             lineRenderer.SetPosition(i, points[i]);
         }
-        float rotation = SetRotation(point, __temp);
-        Debug.Log("rota: "+ rotation);
-      //  snake.transform.DORotate.(new Vector3(0, 0, rotation),0.1f,RotateMode.Fast);//new Vector3(snake.transform.rotation.x, snake.transform.rotation.y, rotation);
+        if (points.Count > 2)
+        {
+            Vector3 __temp = points[points.Count - 2];
+            float rotation = SetRotation(point, __temp);
+            snake.transform.rotation = Quaternion.Euler(snake.transform.rotation.x, snake.transform.rotation.y, rotation);
+        }
         snake.transform.DOMove(lineRenderer.GetPosition(points.Count - 1), 0f);
     }
     
@@ -54,13 +57,8 @@ public class Line : MonoBehaviour
 
     float SetRotation(Vector2 point, Vector2 __temp)
     {
-        Debug.Log("temp before: " + __temp);
-        __temp = Camera.main.ScreenToWorldPoint(__temp);
-        Debug.Log("temp after: " + __temp);
-        Debug.Log("point: " + point);
-        float tan = (__temp.y - point.y) / (__temp.x - point.x);
-        float rotation = Mathf.Atan(tan);
-
-        return rotation/Mathf.PI*-180;
+        float tan = (__temp.x - point.x)/(__temp.y - point.y);
+        float rotation = -Mathf.Atan(tan)*180/Mathf.PI;
+        return rotation % 90;
     }
 }
