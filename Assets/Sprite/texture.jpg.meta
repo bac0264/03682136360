@@ -99,10 +99,10 @@ TextureImporter:
       name: texture_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 15
-        width: 28
-        height: 544
+        x: 16
+        y: 7
+        width: 540
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -110,7 +110,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b547c9b6819a6264bab0aa3b342b6585
+      spriteID: 3ce1541bef6a37041ac6e8d4f1e410db
       vertices: []
       indices: 
       edges: []
