@@ -23,7 +23,6 @@ public class Snake : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Time.timeScale = time;
 	}
     //public void OnCollisionEnter2D(Collision2D collision)
     //{
@@ -50,7 +49,6 @@ public class Snake : MonoBehaviour {
         else
         {
             Debug.Log("run4");
-            time = 0;
         }
     }
 }

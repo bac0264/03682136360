@@ -5,10 +5,15 @@ using UnityEngine;
 public class Circle
     : _Object{
 
-    private void StaAwakert()
+    private void Awake()
     {
-        tag = type.ToString();
+        // Color
+        tag = color.ToString();
         gameObject.tag = tag;
+        // Type
+
+        layer = type.ToString();
+        gameObject.layer = LayerMask.NameToLayer(layer);
     }
     public override void spin()
     {
