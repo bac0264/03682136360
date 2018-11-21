@@ -48,7 +48,7 @@ EdgeCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1171890869605386}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -88,7 +88,7 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 164a22605d788c44c9d82bf0013446df, type: 2}
+  - {fileID: 2100000, guid: 2f1ee1b918ca3af4bbeab4a3b5785d66, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,13 +113,13 @@ LineRenderer:
   - {x: 0, y: 105, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 1
+    widthMultiplier: 0.25
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.3583336
+        value: 0.95833206
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -158,7 +158,7 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 90
+    numCornerVertices: 0
     numCapVertices: 10
     alignment: 0
     textureMode: 0

@@ -65,8 +65,17 @@
     <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
     <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenAnimation.cs" />
     <Compile Include="Assets\Scripts\CameraMan.cs" />
+    <Compile Include="Assets\Scripts\Factory\_Object.cs" />
+    <Compile Include="Assets\Scripts\Factory\AbstractFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\Circle.cs" />
+    <Compile Include="Assets\Scripts\Factory\Game.cs" />
+    <Compile Include="Assets\Scripts\Factory\GameObjectInstantiator.cs" />
+    <Compile Include="Assets\Scripts\Factory\HCN.cs" />
+    <Compile Include="Assets\Scripts\Factory\Square.cs" />
+    <Compile Include="Assets\Scripts\Factory\TriAngle.cs" />
     <Compile Include="Assets\Scripts\Line.cs" />
     <Compile Include="Assets\Scripts\LineCreator.cs" />
+    <Compile Include="Assets\Scripts\Snake.cs" />
     <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
     <None Include="Assets\Demigiant\DemiLib\Core\DemiLib.xml" />
     <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />

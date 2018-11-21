@@ -10,10 +10,13 @@ public class LineCreator : MonoBehaviour
     Line activeLine;
     public GameObject lineContainer;
     bool touching;
+    [Range(0, 1)]
+    public float speed = 0.5f;
     Vector3 temp; // vị trí update
     Vector3 _temp; // camera update 
     Vector3 start = Vector3.zero;
     Vector3 end;
+    Vector3 test = new Vector3(1,1,1);
     /*void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -35,18 +38,19 @@ public class LineCreator : MonoBehaviour
 
     }*/
     private void Start()
-    {
+    {      
         lineGO = Instantiate(linePrefab, lineContainer.transform); // khởi tạo line
         temp = Camera.main.WorldToScreenPoint(new Vector3(0, Camera.main.transform.position.y + 150f, Camera.main.transform.position.z)); // Vị trí của rắn                                                                            
     }
-    void Update()
+    void FixedUpdate()
     {
+       // Time.timeScale = speed;
         processing();
     }
     void processing()
     {
         _temp = Camera.main.transform.position;
-        _temp.y += 0.15f;
+        _temp.y += 0.08f;
         Camera.main.WorldToScreenPoint(_temp);
         Camera.main.transform.position = _temp;
         //  if (activeLine.lineRenderer.positionCount >= 2)
@@ -64,16 +68,19 @@ public class LineCreator : MonoBehaviour
         else
         {
             end = Input.mousePosition;
-            if (end != start) {
-               // temp = Vector3.Lerp(temp, Input.mousePosition, 0.1f);
-                float distance = end.x - start.x;
-                Vector3 vectorDistance = end - start;
-                Debug.Log("distance: " + distance);
-                temp.x += distance;
-                //temp = Vector3.Lerp(temp, end, 0.5f/distance);
-                Debug.Log("Temp: " + temp);
-                start = end;
-            }
+            temp = Vector3.Lerp(temp, Input.mousePosition, 0.1f);
+            //if (end != start)
+            //{
+            //    // temp = Vector3.Lerp(temp, Input.mousePosition, 0.1f);
+            //    float distance = end.x - start.x;
+            //    Vector3 vectorDistance = end - start;
+            //    Debug.Log("distance: " + distance);
+
+            //    temp.x += distance;
+            //    //temp = Vector3.Lerp(temp, end, 0.5f/distance);
+            //    Debug.Log("Temp: " + temp);
+            //    start = end;
+            //}
             if (Input.GetMouseButtonUp(0))
             {
                 end = start;
@@ -96,10 +103,10 @@ public class LineCreator : MonoBehaviour
                 end = Input.GetTouch(0).position;
                 if (end != start)
                 {
-                    // temp = Vector3.Lerp(temp, Input.mousePosition, 0.1f);
                     float distance = end.x - start.x;
                     Vector3 vectorDistance = end - start;
-                    Debug.Log("distance: " + distance);
+                  //  Debug.Log("distance: " + distance);
+                    temp = Vector3.Lerp(temp, Input.mousePosition, 0.1f);
                     temp.x += distance;
                     //temp = Vector3.Lerp(temp, end, 0.5f/distance);
                     Debug.Log("Temp: " + temp);

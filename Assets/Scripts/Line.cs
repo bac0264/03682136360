@@ -49,8 +49,9 @@ public class Line : MonoBehaviour
             Vector3 __temp = points[points.Count - 2];
             float rotation = SetRotation(point, __temp);
             snake.transform.rotation = Quaternion.Euler(snake.transform.rotation.x, snake.transform.rotation.y, rotation);
+            snake.transform.DOMove(lineRenderer.GetPosition(points.Count - 1), 0f);
+
         }
-        snake.transform.DOMove(lineRenderer.GetPosition(points.Count - 1), 0f);
     }
     
     // Set rotate
