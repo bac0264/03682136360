@@ -5,11 +5,13 @@ using UnityEngine;
 public class AbstractFactory : MonoBehaviour
 {
     public List<Sprite> listTri;
+    public List<Sprite> listCircle;
     public List<Sprite> listHCN;
     public List<Sprite> listSquare;
-    public List<Sprite> listCircle;
     public List<GameObject> listPref;
     public Vector3 marked;
+    public List<string> listTag;
+    public List<int> listLayer;
     // private GameObjectInstantiator instantiator;
     /* public AbstractFactory(GameObject prefab)
      {
@@ -28,12 +30,12 @@ public class AbstractFactory : MonoBehaviour
     }
     IEnumerator generate()
     {
-        float temp = Camera.main.transform.position.y + 15;
+        float temp = Camera.main.transform.position.y + 10;
         for(int i = 0; i < listPref.Count; i++)
         {
             createPref(temp);
             yield return new WaitForSeconds(2f);
-            temp = Camera.main.transform.position.y + 15;
+            temp = Camera.main.transform.position.y + 10;
         }
         StartCoroutine(generate());
     }
@@ -42,5 +44,77 @@ public class AbstractFactory : MonoBehaviour
         int index = Random.Range(0, (listPref.Count));
         GameObject go = Instantiate(listPref[index]);
         go.transform.position = new Vector3(0, value, 0);
+        randomGameObject(go);
+    }
+    // Random Tag and Type of Object ( replace Sprite)
+    void randomGameObject(GameObject prefabs)
+    {
+        // Check child
+        int count = prefabs.transform.childCount;
+        if (count < 1) return;
+        else
+        {
+            Transform childs = prefabs.transform;
+            for (int i = 0; i < count; i++)
+            {
+                findingObject(childs, i);
+            }
+        }
+        return;
+    }
+    // Get Index Tag
+    int getIndexTagOfObject(string tag)
+    {
+        for (int i = 0; i < listTag.Count; i++)
+        {
+            if (tag == listTag[i]) return i;
+        }
+        return 0;
+    }
+    int getIndexLayerOfObject(int layer)
+    {
+        for (int i = 0; i < listLayer.Count; i++)
+        {
+            if (layer == listLayer[i]) return i;
+        }
+        return 0;
+    }
+    //listTri; 0
+    //listCircle; 1
+    //listHCN; 2 
+    //listSquare; 3
+    void findingObject(Transform childs, int i)
+    {
+        // index de tim sprite can thay doi trong list tren
+        int _index = getIndexLayerOfObject(childs.GetChild(i).gameObject.layer);
+        Debug.Log("index:"+_index);
+        Debug.Log("Layer: " + childs.GetChild(i).gameObject.layer.ToString());
+        int random = Random.Range(0, listTri.Count );
+        Debug.Log("random: " + random);
+        switch (_index)
+        {
+            case 0: // setup sprite, tag for object
+                childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listTri[random];
+                childs.GetChild(i).tag = listTag[random];
+                Debug.Log("tag 0 : " + listTag[random]);
+                break;
+            case 1:
+                childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listCircle[random];
+                childs.GetChild(i).tag = listTag[random];
+                Debug.Log("tag 1 : " + listTag[random]);
+                break;
+            case 2:
+                childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listHCN[random];
+                childs.GetChild(i).tag = listTag[random];
+                Debug.Log("tag 2: " + listTag[random]);
+                break;
+            case 3:
+                childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listSquare[random];
+                childs.GetChild(i).tag = listTag[random];
+                Debug.Log("tag 3: " + listTag[random]);
+                break;
+            default:
+                break;
+        }
     }
 }

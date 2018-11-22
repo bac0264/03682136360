@@ -64,7 +64,19 @@
     <Compile Include="Assets\Demigiant\DOTween\Examples\Basics.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Examples\Sequences.cs" />
     <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenAnimation.cs" />
-    <Compile Include="Assets\Scripts\CameraMan.cs" />
+    <Compile Include="Assets\Epic Toon FX\Demo\ParticleEffectsShowcase\Scripts\ParticleEffectsLibrary.cs" />
+    <Compile Include="Assets\Epic Toon FX\Demo\ParticleEffectsShowcase\Scripts\PEButtonScript.cs" />
+    <Compile Include="Assets\Epic Toon FX\Demo\ParticleEffectsShowcase\Scripts\PEDestoryTimed.cs" />
+    <Compile Include="Assets\Epic Toon FX\Demo\ParticleEffectsShowcase\Scripts\UICanvasManager.cs" />
+    <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXButtonScript.cs" />
+    <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXFireProjectile.cs" />
+    <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXLoopScript.cs" />
+    <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXMouseOrbit.cs" />
+    <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXProjectileScript.cs" />
+    <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXSceneManager.cs" />
+    <Compile Include="Assets\Epic Toon FX\Scripts\ETFXLightFade.cs" />
+    <Compile Include="Assets\Epic Toon FX\Scripts\ETFXPitchRandomizer.cs" />
+    <Compile Include="Assets\Epic Toon FX\Scripts\ETFXRotation.cs" />
     <Compile Include="Assets\Scripts\Factory\_Object.cs" />
     <Compile Include="Assets\Scripts\Factory\AbstractFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\Circle.cs" />
@@ -73,16 +85,23 @@
     <Compile Include="Assets\Scripts\Factory\HCN.cs" />
     <Compile Include="Assets\Scripts\Factory\Square.cs" />
     <Compile Include="Assets\Scripts\Factory\TriAngle.cs" />
-    <Compile Include="Assets\Scripts\Line.cs" />
-    <Compile Include="Assets\Scripts\LineCreator.cs" />
-    <Compile Include="Assets\Scripts\Snake.cs" />
+    <Compile Include="Assets\Snake\MainGameManager.cs" />
+    <Compile Include="Assets\Snake\Snake.cs" />
+    <Compile Include="Assets\SnakeBackup\CameraMan.cs" />
+    <Compile Include="Assets\SnakeBackup\Line.cs" />
+    <Compile Include="Assets\SnakeBackup\LineCreator.cs" />
+    <Compile Include="Assets\SnakeBackup\Snake.cs" />
     <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
     <None Include="Assets\Demigiant\DemiLib\Core\DemiLib.xml" />
     <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />
+    <None Include="Assets\Epic Toon FX\Prefabs\Combat\Combat FX.txt" />
     <None Include="Assets\Demigiant\DOTween\DOTween46.xml" />
     <None Include="Assets\Demigiant\DOTween\readme.txt" />
+    <None Include="Assets\Epic Toon FX\Prefabs\Interactive\Interactive FX.txt" />
     <None Include="Assets\Demigiant\DOTween\DOTween43.xml" />
+    <None Include="Assets\Epic Toon FX\ETFX Readme.txt" />
     <None Include="Assets\Demigiant\readme_DOTweenPro.txt" />
+    <None Include="Assets\Epic Toon FX\Prefabs\Environment\Environment FX.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/User/Desktop/SnakeGame_v2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

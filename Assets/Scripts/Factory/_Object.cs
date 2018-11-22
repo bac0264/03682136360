@@ -4,16 +4,24 @@ using UnityEngine;
 
 public abstract class _Object
     : MonoBehaviour {
-    public enum color
+    public enum Color
     {
-        Red,
         Blue,
         Green,
+        Red,
         Yellow
     }
-    public color type;
+    public enum Type
+    {
+        Triangle,
+        Circle,
+        HCN,
+        Square
+    }
+    public Type type;
+    public Color color;
     public string tag;
-
+    public string layer;
     public virtual Square getSquare(Square sf) { return sf; }
     public virtual Circle getCircle(Circle cf) { return cf; }
     public virtual HCN getHCN(HCN hcn) { return hcn; }

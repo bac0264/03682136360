@@ -7,11 +7,13 @@ public class Circle
 
     private void Awake()
     {
-        tag = type.ToString();
+        // Color
+        tag = color.ToString();
         gameObject.tag = tag;
-        Vector2 bound = gameObject.GetComponent<SpriteRenderer>().bounds.size +transform.position;
-        bound = transform.InverseTransformDirection(bound);
-        Debug.Log(bound);
+        // Type
+
+        layer = type.ToString();
+        gameObject.layer = LayerMask.NameToLayer(layer);
     }
     public override void spin()
     {

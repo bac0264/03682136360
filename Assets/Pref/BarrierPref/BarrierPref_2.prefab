@@ -496,8 +496,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec79b345626a6141b07729d1ee03381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 2
+  color: 0
   tag: 
+  layer: 
 --- !u!114 &114167051548265090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -510,7 +512,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  color: 0
   tag: 
+  layer: 
 --- !u!114 &114346684495248284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -523,7 +527,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  color: 0
   tag: 
+  layer: 
 --- !u!114 &114422120708416758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -535,8 +541,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec79b345626a6141b07729d1ee03381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 2
+  color: 0
   tag: 
+  layer: 
 --- !u!114 &114461750884143488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -549,7 +557,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  color: 0
   tag: 
+  layer: 
 --- !u!114 &114536497556573304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -561,8 +571,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec79b345626a6141b07729d1ee03381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 2
+  color: 0
   tag: 
+  layer: 
 --- !u!114 &114738615552405772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -575,7 +587,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  color: 0
   tag: 
+  layer: 
 --- !u!114 &114884926523454610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -588,7 +602,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  color: 0
   tag: 
+  layer: 
 --- !u!212 &212205963605616258
 SpriteRenderer:
   m_ObjectHideFlags: 1
