@@ -20,8 +20,8 @@ public class Snake : MonoBehaviour {
     {
         //Color startColor = ColorOfSnake[Random.Range(0, ColorOfSnake.Length)];
         // transform.GetChild(1).GetComponent<SpriteRenderer>().color = startColor;
-        Destroy(transform.GetChild(1).gameObject, 3);
         int random = Random.Range(0, listSnakeHead.Count);
+        transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = listSnakeTail[random];
         Change(random);
     }
     public void Change(int index)
@@ -44,8 +44,18 @@ public class Snake : MonoBehaviour {
     void FixedUpdate () {
         if (MainGameManager.gameStatus == GameStatus.PLAYING)
         {
+            if (transform.childCount > 2)
+            {
+                GameObject obj = GameObject.FindGameObjectWithTag("Tail");
+                Destroy(obj, 3);
+            }
+
+            Debug.Log(transform.childCount);
             oldHeadPos = transform.GetChild(0).position;
-            transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.15f);
+            Vector3 temp = transform.GetChild(0).position;
+            transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.5f);
+            temp = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.1f);
+            transform.GetChild(0).position = new Vector3(temp.x, transform.GetChild(0).position.y, transform.GetChild(0).position.z);
             Vector2 headDirection = (transform.GetChild(0).position - oldHeadPos);
             transform.GetChild(0).eulerAngles = new Vector3(0, 0, -Mathf.Atan(headDirection.x / headDirection.y) * 180 / Mathf.PI);
             if (bodyPos.Count > 0)

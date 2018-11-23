@@ -14,14 +14,16 @@ public class MainGameManager : MonoBehaviour {
     public static GameStatus gameStatus = GameStatus.READY;
     private void Start()
     {
-        factory.SetActive(true);
         Camera.main.orthographicSize = widthScreen / Screen.width * Screen.height/2;
     }
     // Update is called once per frame
     void FixedUpdate () {
         //Move camera
         if (gameStatus == GameStatus.PLAYING)
-            Camera.main.transform.position = new Vector3(0, Camera.main.transform.position.y + Time.deltaTime * 2.5f, -10);
+        {
+            factory.SetActive(true);
+            Camera.main.transform.position = new Vector3(0, Camera.main.transform.position.y + Time.deltaTime * 3.2f, -10);
+        }
         //Target Moving
         if (lastXmouse != 1000)
         {
@@ -39,9 +41,28 @@ public class MainGameManager : MonoBehaviour {
         {
             lastXmouse = 1000;
         }
+        if (Input.touchCount > 0)
+        {
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                lastXmouse = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+                if (gameStatus == GameStatus.READY) gameStatus = GameStatus.PLAYING;
+            }
+            if (Input.GetTouch(0).phase == TouchPhase.Moved)
+            {
+
+            }
+            if (Input.GetTouch(0).phase == TouchPhase.Ended)
+            {
+                lastXmouse = 1000;
+            }
+        }
+
     }
     public void Retry()
     {
+        gameStatus = GameStatus.READY;
         SceneManager.LoadScene("maingame");
+        Time.timeScale = 1;
     }
 }
