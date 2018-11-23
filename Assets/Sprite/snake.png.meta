@@ -115,248 +115,8 @@ TextureImporter:
       name: snake_0
       rect:
         serializedVersion: 2
-        x: 123
-        y: 1206
-        width: 50
-        height: 595
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 808e64100c2ba9a46b27e7cbaf8b28d6
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_1
-      rect:
-        serializedVersion: 2
-        x: 265
-        y: 1208
-        width: 50
-        height: 595
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ca46beacdab1cf4092dc8c49f0d5a88
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_2
-      rect:
-        serializedVersion: 2
-        x: 421
-        y: 1204
-        width: 50
-        height: 595
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 47da74e933e7982498ef7d84f5e08cbb
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_3
-      rect:
-        serializedVersion: 2
-        x: 579
-        y: 1202
-        width: 50
-        height: 595
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5196fc9574b1c1a4faa670e58231a621
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_4
-      rect:
-        serializedVersion: 2
-        x: 133
-        y: 1165
-        width: 30
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c083124ba1828b042b357a21b72354ce
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_5
-      rect:
-        serializedVersion: 2
-        x: 275
-        y: 1167
-        width: 30
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 80876f48dd4e62049987484593f87eb9
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_6
-      rect:
-        serializedVersion: 2
-        x: 431
-        y: 1163
-        width: 30
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: de53b53e45afbf84f90dd5cf27c2bff1
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_7
-      rect:
-        serializedVersion: 2
-        x: 589
-        y: 1161
-        width: 30
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77c79d68a2c4e4b41afe3a990399ebb5
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_8
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 1139
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2656d02065f86ec43a94e10929de76e4
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_9
-      rect:
-        serializedVersion: 2
-        x: 282
-        y: 1141
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 025fa750f5de15d47b236912798c2632
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_10
-      rect:
-        serializedVersion: 2
-        x: 438
-        y: 1137
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 89bcbd87925d4ce4f8b0dea85d7d4a31
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_11
-      rect:
-        serializedVersion: 2
-        x: 596
-        y: 1135
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8aac690a8c79a2f4dbe0cd774d477aa2
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: snake_12
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 649
+        x: 649
+        y: 856
         width: 164
         height: 164
       alignment: 0
@@ -366,7 +126,247 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78843d8c3c2b90a42b15b6092139b88a
+      spriteID: d75093031f4563248acbdfbad16d5ec1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snake_1
+      rect:
+        serializedVersion: 2
+        x: 1139
+        y: 924
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 255df2041e6b54240a91705aa8f3096a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snake_2
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 917
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13265cc841d802343beaa91d24f77d25
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snake_3
+      rect:
+        serializedVersion: 2
+        x: 1220
+        y: 917
+        width: 520
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7095e0b8929ca5f45821b0c30b5dff5e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snake_4
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 782
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe319fcccc5395941be66684d47164ba
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snake_5
+      rect:
+        serializedVersion: 2
+        x: 1167
+        y: 775
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 051c67cedbaa6d644ab8384b4eb41b99
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snake_6
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 775
+        width: 515
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a789d67684f600e449e58d52425f2658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snake_7
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 604
+        width: 344
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3f6daaf20e42484baa3f4f5031f3a6d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snake_8
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 626
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 164735a14ea29f74e9d572dd01987824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snake_9
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 619
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 755af7d79f6dff149ab8d214aa7fe461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snake_10
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 620
+        width: 516
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5412d5364ebb38f4dada6af10b4101a5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snake_11
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 424
+        width: 344
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85db006ea9ac8a14fb24919933a904d1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: snake_12
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 468
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc4f653b4818d904eac4c501125ca0e7
       vertices: []
       indices: 
       edges: []
@@ -375,10 +375,10 @@ TextureImporter:
       name: snake_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 472
-        width: 164
-        height: 344
+        x: 1161
+        y: 461
+        width: 30
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -386,7 +386,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8f68760888ef5449bb7c0298522b2a6
+      spriteID: 91ea1c11a70b4d146a4a601cde0473de
       vertices: []
       indices: 
       edges: []
@@ -395,10 +395,10 @@ TextureImporter:
       name: snake_14
       rect:
         serializedVersion: 2
-        x: 496
-        y: 472
-        width: 160
-        height: 344
+        x: 1217
+        y: 461
+        width: 517
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -406,7 +406,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82a09b1cd328c8a44afe4be619357162
+      spriteID: 0022eb2d7a3f4ae44b479cea0da6d2fe
       vertices: []
       indices: 
       edges: []
@@ -415,10 +415,10 @@ TextureImporter:
       name: snake_15
       rect:
         serializedVersion: 2
-        x: 668
-        y: 468
-        width: 160
-        height: 344
+        x: 468
+        y: 252
+        width: 344
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -426,7 +426,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72b4f1a6945f33a4f8675fd4bc2eb029
+      spriteID: 44a244a3660a0364c96009c8c198f94a
       vertices: []
       indices: 
       edges: []
@@ -435,10 +435,10 @@ TextureImporter:
       name: snake_16
       rect:
         serializedVersion: 2
-        x: 848
-        y: 468
-        width: 164
-        height: 344
+        x: 468
+        y: 68
+        width: 344
+        height: 164
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -446,7 +446,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18c047ae74eae0041aa737cf5e0d7f9b
+      spriteID: 274c54e2958cc8a4ab783bc79b5d7ef2
       vertices: []
       indices: 
       edges: []

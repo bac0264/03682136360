@@ -16,7 +16,8 @@ public abstract class _Object
         Triangle,
         Circle,
         HCN,
-        Square
+        Square,
+        ChangeColor
     }
     public Type type;
     public Color color;

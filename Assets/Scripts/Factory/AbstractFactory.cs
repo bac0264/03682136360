@@ -8,6 +8,7 @@ public class AbstractFactory : MonoBehaviour
     public List<Sprite> listCircle;
     public List<Sprite> listHCN;
     public List<Sprite> listSquare;
+    public List<Sprite> listChangeColor;
     public List<GameObject> listPref;
     public Vector3 marked;
     public List<string> listTag;
@@ -34,12 +35,12 @@ public class AbstractFactory : MonoBehaviour
         for(int i = 0; i < listPref.Count; i++)
         {
             createPref(temp);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(3f);
             temp = Camera.main.transform.position.y + 10;
         }
         StartCoroutine(generate());
     }
-    void createPref(float value)
+    public void createPref(float value)
     {
         int index = Random.Range(0, (listPref.Count));
         GameObject go = Instantiate(listPref[index]);
@@ -47,7 +48,7 @@ public class AbstractFactory : MonoBehaviour
         randomGameObject(go);
     }
     // Random Tag and Type of Object ( replace Sprite)
-    void randomGameObject(GameObject prefabs)
+    public void randomGameObject(GameObject prefabs)
     {
         // Check child
         int count = prefabs.transform.childCount;
@@ -63,7 +64,7 @@ public class AbstractFactory : MonoBehaviour
         return;
     }
     // Get Index Tag
-    int getIndexTagOfObject(string tag)
+    public int getIndexTagOfObject(string tag)
     {
         for (int i = 0; i < listTag.Count; i++)
         {
@@ -71,7 +72,7 @@ public class AbstractFactory : MonoBehaviour
         }
         return 0;
     }
-    int getIndexLayerOfObject(int layer)
+    public int getIndexLayerOfObject(int layer)
     {
         for (int i = 0; i < listLayer.Count; i++)
         {
@@ -83,7 +84,7 @@ public class AbstractFactory : MonoBehaviour
     //listCircle; 1
     //listHCN; 2 
     //listSquare; 3
-    void findingObject(Transform childs, int i)
+    public void findingObject(Transform childs, int i)
     {
         // index de tim sprite can thay doi trong list tren
         int _index = getIndexLayerOfObject(childs.GetChild(i).gameObject.layer);
@@ -96,22 +97,22 @@ public class AbstractFactory : MonoBehaviour
             case 0: // setup sprite, tag for object
                 childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listTri[random];
                 childs.GetChild(i).tag = listTag[random];
-                Debug.Log("tag 0 : " + listTag[random]);
                 break;
             case 1:
                 childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listCircle[random];
                 childs.GetChild(i).tag = listTag[random];
-                Debug.Log("tag 1 : " + listTag[random]);
                 break;
             case 2:
                 childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listHCN[random];
                 childs.GetChild(i).tag = listTag[random];
-                Debug.Log("tag 2: " + listTag[random]);
                 break;
             case 3:
                 childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listSquare[random];
                 childs.GetChild(i).tag = listTag[random];
-                Debug.Log("tag 3: " + listTag[random]);
+                break;
+            case 4:
+                childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listChangeColor[random];
+                childs.GetChild(i).tag = listTag[random];
                 break;
             default:
                 break;

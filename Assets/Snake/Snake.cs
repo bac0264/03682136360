@@ -11,19 +11,27 @@ public class Snake : MonoBehaviour {
     List<Vector3> bodyPos = new List<Vector3>();
     Collider2D[] touchHead = new Collider2D[100];
     GameObject body;
+    public List<Sprite> listSnakeHead; // color of snake head
+    public List<Material> listMaterial; // color of snake
+    public List<string> listTag = new List<string>();
+    public List<Sprite> listSnakeTail; // color of tail color
+    public string tag;
     private void Start()
     {
         //Color startColor = ColorOfSnake[Random.Range(0, ColorOfSnake.Length)];
-       // transform.GetChild(1).GetComponent<SpriteRenderer>().color = startColor;
+        // transform.GetChild(1).GetComponent<SpriteRenderer>().color = startColor;
         Destroy(transform.GetChild(1).gameObject, 3);
-        Change();
+        int random = Random.Range(0, listSnakeHead.Count);
+        Change(random);
     }
-    public void Change()
+    public void Change(int index)
     {
-       // transform.GetChild(0).GetComponent<SpriteRenderer>().color = color;
+        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = listSnakeHead[index];
         Destroy(body, 3f); //xoa body cu
         body = Instantiate(bodyPrefab,transform); //tao body moi
-       // body.GetComponent<LineRenderer>().SetColors(color, color);
+        body.GetComponent<LineRenderer>().material = listMaterial[index];
+        tag = listTag[index];
+        transform.GetChild(0).tag = tag;
         bodyPos.Clear();
         for (int i = 0; i < body.transform.GetComponent<LineRenderer>().positionCount; i++)
         {

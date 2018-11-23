@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class _Snake : MonoBehaviour {
+public class SnakeBU : MonoBehaviour {
 
     public GameObject[] listSnakeHead;
     public Material[] listColor;
@@ -39,16 +39,16 @@ public class _Snake : MonoBehaviour {
     //        Time.timeScale = 0;
     //    }
     //}
-    public void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.tag.Equals(tag))
-        {
-            Debug.Log("run3");
-            Destroy(col.gameObject);
-        }
-        else
-        {
-            Debug.Log("run4");
-        }
-    }
+    //public void OnTriggerEnter2D(Collider2D col)
+    //{
+    //    if (col.gameObject.tag.Equals(tag))
+    //    {
+    //        Debug.Log("run3");
+    //        Destroy(col.gameObject);
+    //    }
+    //    else
+    //    {
+    //        Debug.Log("run4");
+    //    }
+    //}
 }

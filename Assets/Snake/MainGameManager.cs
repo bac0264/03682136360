@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public enum GameStatus
 {
     READY,
@@ -9,18 +9,19 @@ public enum GameStatus
     GAMEOVER
 }
 public class MainGameManager : MonoBehaviour {
-
+    public GameObject factory;
     float lastXmouse = 1000,widthScreen=6;
     public static GameStatus gameStatus = GameStatus.READY;
     private void Start()
     {
+        factory.SetActive(true);
         Camera.main.orthographicSize = widthScreen / Screen.width * Screen.height/2;
     }
     // Update is called once per frame
     void FixedUpdate () {
         //Move camera
         if (gameStatus == GameStatus.PLAYING)
-            Camera.main.transform.position = new Vector3(0, Camera.main.transform.position.y + Time.deltaTime * 2, -10);
+            Camera.main.transform.position = new Vector3(0, Camera.main.transform.position.y + Time.deltaTime * 2.5f, -10);
         //Target Moving
         if (lastXmouse != 1000)
         {
@@ -38,5 +39,9 @@ public class MainGameManager : MonoBehaviour {
         {
             lastXmouse = 1000;
         }
+    }
+    public void Retry()
+    {
+        SceneManager.LoadScene("maingame");
     }
 }
