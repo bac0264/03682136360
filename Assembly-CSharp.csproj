@@ -79,6 +79,7 @@
     <Compile Include="Assets\Epic Toon FX\Scripts\ETFXRotation.cs" />
     <Compile Include="Assets\Scripts\Factory\_Object.cs" />
     <Compile Include="Assets\Scripts\Factory\AbstractFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\ChangeColor.cs" />
     <Compile Include="Assets\Scripts\Factory\Circle.cs" />
     <Compile Include="Assets\Scripts\Factory\Game.cs" />
     <Compile Include="Assets\Scripts\Factory\GameObjectInstantiator.cs" />
@@ -87,10 +88,11 @@
     <Compile Include="Assets\Scripts\Factory\TriAngle.cs" />
     <Compile Include="Assets\Snake\MainGameManager.cs" />
     <Compile Include="Assets\Snake\Snake.cs" />
+    <Compile Include="Assets\Snake\SnakeHead.cs" />
     <Compile Include="Assets\SnakeBackup\CameraMan.cs" />
     <Compile Include="Assets\SnakeBackup\Line.cs" />
     <Compile Include="Assets\SnakeBackup\LineCreator.cs" />
-    <Compile Include="Assets\SnakeBackup\Snake.cs" />
+    <Compile Include="Assets\SnakeBackup\SnakeBU.cs" />
     <None Include="Assets\Demigiant\DOTweenPro\readme.txt" />
     <None Include="Assets\Demigiant\DemiLib\Core\DemiLib.xml" />
     <None Include="Assets\Demigiant\DOTween\DOTween50.xml" />

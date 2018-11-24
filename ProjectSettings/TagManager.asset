@@ -8,6 +8,7 @@ TagManager:
   - Green
   - Red
   - Yellow
+  - Tail
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Circle
   - HCN
   - Square
-  - 
+  - ChangeColor
   - 
   - 
   - 

@@ -325,7 +325,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  color: 0
   tag: 
+  layer: 
 --- !u!114 &114090730058146780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -338,7 +340,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  color: 0
   tag: 
+  layer: 
 --- !u!114 &114230897085039088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -351,7 +355,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  color: 0
   tag: 
+  layer: 
 --- !u!114 &114366930942252200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,7 +370,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  color: 0
   tag: 
+  layer: 
 --- !u!114 &114496777889087622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -377,7 +385,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  color: 0
   tag: 
+  layer: 
 --- !u!212 &212000268901158868
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -418,7 +428,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.4, y: 3.41}
+  m_Size: {x: 1.888889, y: 1.8944445}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -464,7 +474,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.4, y: 3.41}
+  m_Size: {x: 1.888889, y: 1.8944445}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -510,7 +520,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.4, y: 3.41}
+  m_Size: {x: 1.888889, y: 1.8944445}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
