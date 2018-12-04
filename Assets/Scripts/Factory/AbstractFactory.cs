@@ -11,6 +11,7 @@ public class AbstractFactory : MonoBehaviour
     public List<Sprite> listChangeColor;
     public List<GameObject> listPref;
     public int marked;
+    public Sprite Star;
     public List<string> listTag;
     public List<int> listLayer;
     public GameObject headSnake;
@@ -40,7 +41,7 @@ public class AbstractFactory : MonoBehaviour
         {
             if (layer == listLayer[i]) return i;
         }
-        return 0;
+        return -1;
     }
     public bool checkCC(GameObject prefab)
     {
@@ -91,20 +92,18 @@ public class AbstractFactory : MonoBehaviour
         {
             bool check = checkCC(prefabs);
             Transform childs = prefabs.transform;
+            int randomIndex = Random.Range(1, count);
+            Debug.Log("randomIndex:" +randomIndex);
             if (check)
-            {
+            { // vi tri trung mau voi ran
                 for (int i = 0; i < count; i++)
                 {
                     int random = Random.Range(0, listTri.Count);
-                    if (i == 0) {
-                        while(random == getIndexTagOfObject(headSnake.tag)){
-                            random = Random.Range(0, listTri.Count);
-                        }
-                        marked = random;
-                    }
+                    Debug.Log("Random:" + random);
+                    if (i == 0) marked = random;
                     else
                     {
-                        if (i % 2 == 0) random = marked;
+                        if (i == randomIndex) random = marked;
                         else
                         {
                             while(random == marked)
@@ -122,17 +121,17 @@ public class AbstractFactory : MonoBehaviour
                 {
                     int random = Random.Range(0, listTri.Count);
                     if (i == 0) random = getIndexTagOfObject(headSnake.tag);
-                    //else
-                    //{
-                    //    if (i % 2 == 0) random = marked;
-                    //    else
-                    //    {
-                    //        while (random != marked)
-                    //        {
-                    //            random = Random.Range(0, listTri.Count);
-                    //        }
-                    //    }
-                    //}
+                    else
+                    {
+                        if (i == randomIndex) random = marked;
+                        else
+                        {
+                            while (random == marked)
+                            {
+                                random = Random.Range(0, listTri.Count);
+                            }
+                        }
+                    }
                     findingObject(childs, i, random);
                 }
             }
@@ -150,25 +149,31 @@ public class AbstractFactory : MonoBehaviour
         // index de tim sprite can thay doi trong list tren
         int _index = getIndexLayerOfObject(childs.GetChild(i).gameObject.layer);
         // Change color
-        childs.GetChild(i).tag = listTag[random];
         switch (_index)
         {
             case 0: // setup sprite, tag for object
                 childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listTri[random];
+                childs.GetChild(i).tag = listTag[random];
                 break;
             case 1:
                 childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listCircle[random];
+                childs.GetChild(i).tag = listTag[random];
                 break;
             case 2:
                 childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listHCN[random];
+                childs.GetChild(i).tag = listTag[random];
                 break;
             case 3:
                 childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listSquare[random];
+                childs.GetChild(i).tag = listTag[random];
                 break;
             case 4:
                 childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = listChangeColor[random];
+                childs.GetChild(i).tag = listTag[random];
                 break;
             default:
+                childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = Star;
+                childs.GetChild(i).gameObject.layer = 13;
                 break;
         }
     }

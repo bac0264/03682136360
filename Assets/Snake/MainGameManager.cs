@@ -19,11 +19,12 @@ public class MainGameManager : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate () {
         //Move camera
-        if (gameStatus == GameStatus.PLAYING)
-        {
-            factory.SetActive(true);
-            Camera.main.transform.position = new Vector3(0, Camera.main.transform.position.y + Time.deltaTime * 3.2f, -10);
-        }
+        //if (gameStatus == GameStatus.PLAYING)
+        //{
+        //    factory.SetActive(true);
+        //    Camera.main.transform.position = new Vector3(0, Camera.main.transform.position.y + Time.deltaTime * 3.2f, -10);
+        //}
+        Camera.main.transform.position = new Vector3(0, Camera.main.transform.position.y + Time.deltaTime * 3.2f, -10);
         //Target Moving
         if (lastXmouse != 1000)
         {
@@ -35,7 +36,7 @@ public class MainGameManager : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             lastXmouse = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-            if (gameStatus == GameStatus.READY) gameStatus = GameStatus.PLAYING;
+           // if (gameStatus == GameStatus.READY) gameStatus = GameStatus.PLAYING;
         }
         if (Input.GetMouseButtonUp(0))
         {
@@ -46,7 +47,7 @@ public class MainGameManager : MonoBehaviour {
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
                 lastXmouse = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
-                if (gameStatus == GameStatus.READY) gameStatus = GameStatus.PLAYING;
+              //  if (gameStatus == GameStatus.READY) gameStatus = GameStatus.PLAYING;
             }
             if (Input.GetTouch(0).phase == TouchPhase.Moved)
             {

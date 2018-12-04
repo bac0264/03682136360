@@ -77,6 +77,9 @@
     <Compile Include="Assets\Epic Toon FX\Scripts\ETFXLightFade.cs" />
     <Compile Include="Assets\Epic Toon FX\Scripts\ETFXPitchRandomizer.cs" />
     <Compile Include="Assets\Epic Toon FX\Scripts\ETFXRotation.cs" />
+    <Compile Include="Assets\Scripts\_Collider.cs" />
+    <Compile Include="Assets\Scripts\BGScaler.cs" />
+    <Compile Include="Assets\Scripts\ButtonManager.cs" />
     <Compile Include="Assets\Scripts\Factory\_Object.cs" />
     <Compile Include="Assets\Scripts\Factory\AbstractFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\ChangeColor.cs" />
@@ -86,6 +89,9 @@
     <Compile Include="Assets\Scripts\Factory\HCN.cs" />
     <Compile Include="Assets\Scripts\Factory\Square.cs" />
     <Compile Include="Assets\Scripts\Factory\TriAngle.cs" />
+    <Compile Include="Assets\Scripts\ObjectPooling.cs" />
+    <Compile Include="Assets\Scripts\PopUp.cs" />
+    <Compile Include="Assets\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Snake\MainGameManager.cs" />
     <Compile Include="Assets\Snake\Snake.cs" />
     <Compile Include="Assets\Snake\SnakeHead.cs" />
