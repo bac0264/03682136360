@@ -21,7 +21,8 @@ public class Snake : MonoBehaviour
     public GameObject circle;
     public List<GameObject> objectsPooling = new List<GameObject>();
     int tempOP = 0;
-    public int indexToTransform;
+    public int indexToTransform = 0;
+    public int indexToSetActive = 0;
     private void Start()
     {
         //Color startColor = ColorOfSnake[Random.Range(0, ColorOfSnake.Length)];
@@ -52,7 +53,7 @@ public class Snake : MonoBehaviour
 
     }
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         //if (MainGameManager.gameStatus == GameStatus.PLAYING)
         //{
@@ -95,11 +96,34 @@ public class Snake : MonoBehaviour
             }
             else
             {
-                for (int i = tempOP * 100; i < (( objectsPooling.Count / 2 )*(tempOP+1) ) ; i++)
+                //for (int i = tempOP * 100; i < (( objectsPooling.Count / 2 )*(tempOP+1) ) ; i++)
+                //{
+                //    objectsPooling[i].SetActive(false);
+                //}
+                //tempOP = (tempOP + 1) % 2;
+                indexToSetActive++;
+                objectsPooling[indexToSetActive].SetActive(false);
+                if (indexToSetActive >= ObjectPooling.instance.amountToPool - 1) indexToSetActive = 0;
+                circle = ObjectPooling.instance.getObjectPooling();
+                oldHeadPos = transform.GetChild(0).position;
+                Vector3 temp = transform.GetChild(0).position;
+                transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.45f);
+                // temp = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.1f);
+                //transform.GetChild(0).position = new Vector3(temp.x, transform.GetChild(0).position.y, transform.GetChild(0).position.z);
+                Vector2 headDirection = (transform.GetChild(0).position - oldHeadPos);
+                transform.GetChild(0).eulerAngles = new Vector3(0, 0, -Mathf.Atan(headDirection.x / headDirection.y) * 180 / Mathf.PI);
+                if (objectsPooling.Count > 0)
                 {
-                    objectsPooling[i].SetActive(false);
+                    // objectsPooling.RemoveAt(0);//circle.transform.position = transform.GetChild(0).position;
+                    if (circle != null)
+                    {
+                        //circle.GetComponent<LineRenderer>().material = listMaterial[1];
+                        circle.SetActive(true);
+                        circle.GetComponent<LineRenderer>().SetPosition(0, oldHeadPos);
+                        circle.GetComponent<LineRenderer>().SetPosition(1, transform.GetChild(0).position);
+                        Change(indexToTransform, circle);
+                    }
                 }
-                tempOP = (tempOP + 1) % 2;
             }
         }
         //}

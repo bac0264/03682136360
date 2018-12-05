@@ -92,6 +92,10 @@
     <Compile Include="Assets\Scripts\ObjectPooling.cs" />
     <Compile Include="Assets\Scripts\PopUp.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
+    <Compile Include="Assets\Shop\Scripts\SaveLoad.cs" />
+    <Compile Include="Assets\Shop\Scripts\ShopManager.cs" />
+    <Compile Include="Assets\Shop\Scripts\snakeHeadItem.cs" />
+    <Compile Include="Assets\Shop\Scripts\snakeItem.cs" />
     <Compile Include="Assets\Snake\MainGameManager.cs" />
     <Compile Include="Assets\Snake\Snake.cs" />
     <Compile Include="Assets\Snake\SnakeHead.cs" />

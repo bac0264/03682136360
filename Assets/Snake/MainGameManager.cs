@@ -12,9 +12,17 @@ public class MainGameManager : MonoBehaviour {
     public GameObject factory;
     float lastXmouse = 1000,widthScreen=6;
     public static GameStatus gameStatus = GameStatus.READY;
+    public float smoothy = 0.3f;
+    private Vector3 velocity;
     private void Start()
     {
         Camera.main.orthographicSize = widthScreen / Screen.width * Screen.height/2;
+    }
+    private void LateUpdate()
+    {
+        float desiredPosition = Camera.main.transform.position.y + Time.deltaTime * 3.2f;
+        Vector3 lerp = Vector3.SmoothDamp(Camera.main.transform.position, new Vector3(0, desiredPosition, -10), ref velocity, smoothy * Time.deltaTime);
+        Camera.main.transform.position = new Vector3(0, lerp.y, -10);
     }
     // Update is called once per frame
     void FixedUpdate () {
@@ -24,7 +32,6 @@ public class MainGameManager : MonoBehaviour {
         //    factory.SetActive(true);
         //    Camera.main.transform.position = new Vector3(0, Camera.main.transform.position.y + Time.deltaTime * 3.2f, -10);
         //}
-        Camera.main.transform.position = new Vector3(0, Camera.main.transform.position.y + Time.deltaTime * 3.2f, -10);
         //Target Moving
         if (lastXmouse != 1000)
         {
