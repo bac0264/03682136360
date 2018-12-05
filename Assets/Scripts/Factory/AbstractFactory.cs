@@ -92,6 +92,7 @@ public class AbstractFactory : MonoBehaviour
         {
             bool check = checkCC(prefabs);
             Transform childs = prefabs.transform;
+            // vi tri se trung mau voi barrier cc
             int randomIndex = Random.Range(1, count);
             Debug.Log("randomIndex:" +randomIndex);
             if (check)

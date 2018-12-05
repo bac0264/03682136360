@@ -86,7 +86,7 @@ public class LineCreator : MonoBehaviour
             //}
             if (Input.GetMouseButtonUp(0))
             {
-                end = start;
+               // end = start;
                 touching = false;
                 // Debug.Log("index: " + (activeLine.lineRenderer.GetPosition(activeLine.lineRenderer.positionCount - 1)));
                 touchEnd(activeLine.lineRenderer.GetPosition(activeLine.lineRenderer.positionCount - 1));
