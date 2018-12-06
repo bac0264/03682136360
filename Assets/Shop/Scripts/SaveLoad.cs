@@ -6,7 +6,11 @@ using System.IO;
 using System;
 public class SaveLoad : MonoBehaviour
 {
-
+    public static SaveLoad instance;
+    private void Awake()
+    {
+        if (instance == null) instance = this;
+    }
     public class SaveData
     {
         public List<snakeHeadItem> markedList = new List<snakeHeadItem>();

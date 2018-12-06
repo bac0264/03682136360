@@ -13,4 +13,8 @@ public class ButtonManager : MonoBehaviour {
     {
         SceneManager.LoadScene("maingame");
     }
+    public void nextShop()
+    {
+        SceneManager.LoadScene("Shop");
+    }
 }

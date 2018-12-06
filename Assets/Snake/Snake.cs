@@ -74,7 +74,7 @@ public class Snake : MonoBehaviour
             {
                 oldHeadPos = transform.GetChild(0).position;
                 Vector3 temp = transform.GetChild(0).position;
-                transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.45f);
+                transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.3f);
                 // temp = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.1f);
                 //transform.GetChild(0).position = new Vector3(temp.x, transform.GetChild(0).position.y, transform.GetChild(0).position.z);
                 Vector2 headDirection = (transform.GetChild(0).position - oldHeadPos);

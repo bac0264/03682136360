@@ -70,7 +70,7 @@ public class AbstractFactory : MonoBehaviour
         for(int i = 0; i < listPref.Count; i++)
         {
             createPref(temp);
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(4f);
             temp = Camera.main.transform.position.y + 10;
         }
         StartCoroutine(generate());
