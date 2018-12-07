@@ -18,19 +18,25 @@ public class ShopManager : MonoBehaviour
     public int count;
     private void Awake()
     {
+        currentID = PlayerPrefs.GetInt("currentID");
         if (instance == null) instance = this;
         _IsGameStartedForTheFirstTime();
+        _setupStar();
+    }
+    void _setupStar()
+    {
+        star = PlayerPrefs.GetInt("StarScore");
     }
     private void Start()
     {
-        //Load da   ta
-
+        //Load data
+        SaveLoad.instance.loading();
         //
         if(snakeHeadList != null)
         {
             snakeHeadList[0].bought = true;
+            boughtList.Add(snakeHeadList[0]);
         }
-        currentID = PlayerPrefs.GetInt("currentID");
         for (int i = 0; i < count; i++)
         {
             GameObject obj = Instantiate(prefSnakeHeadItem, container, false);
@@ -40,7 +46,9 @@ public class ShopManager : MonoBehaviour
             // xet da mua
             if (snakeHeadList[i].bought)
             {
-                obj.transform.GetChild(2).gameObject.SetActive(false);
+                foreach (Transform childsobj in obj.transform.GetChild(2)) {
+                    childsobj.gameObject.SetActive(false);
+                }
                 // snake chua su dung
                 if (snakeHeadList[i].id != currentID)
                 {
@@ -59,6 +67,8 @@ public class ShopManager : MonoBehaviour
             }
             snakeHeadObjectList.Add(obj);
         }
+        UpdateStar();
+        UpdateUI();
     }
     public void UpdateUI()
     {
@@ -68,9 +78,12 @@ public class ShopManager : MonoBehaviour
             for (int j = 0; j < snakeHeadList.Count; j++)
             {
                 
-                if (snakeHeadList[j].bought = boughtList[i].bought)
+                if (snakeHeadList[j].bought == boughtList[i].bought)
                 {
-                    snakeHeadObjectList[j].transform.GetChild(2).gameObject.SetActive(false);
+                    foreach (Transform childsobj in snakeHeadObjectList[j].transform.GetChild(2))
+                    {
+                        childsobj.gameObject.SetActive(false);
+                    }
                     // snake item da mua nhung k su dung
                     if (snakeHeadList[j].id != currentID)
                     {

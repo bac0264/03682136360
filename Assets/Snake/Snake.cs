@@ -23,7 +23,7 @@ public class Snake : MonoBehaviour
     int tempOP = 0;
     public int indexToTransform = 0;
     public int indexToSetActive = 0;
-    private void Start()
+    private void Awake()
     {
         //Color startColor = ColorOfSnake[Random.Range(0, ColorOfSnake.Length)];
         // transform.GetChild(1).GetComponent<SpriteRenderer>().color = startColor;
@@ -31,6 +31,7 @@ public class Snake : MonoBehaviour
         Destroy(obj, 3);
         int random = Random.Range(0, listSnakeHead.Count);
         indexToTransform = random;
+        gameObject.transform.GetChild(0).tag = listTag[random];
         transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = listSnakeTail[random];
     }
     public void Change(int index,GameObject _circle)
@@ -96,20 +97,13 @@ public class Snake : MonoBehaviour
             }
             else
             {
-                //for (int i = tempOP * 100; i < (( objectsPooling.Count / 2 )*(tempOP+1) ) ; i++)
-                //{
-                //    objectsPooling[i].SetActive(false);
-                //}
-                //tempOP = (tempOP + 1) % 2;
-                indexToSetActive++;
                 objectsPooling[indexToSetActive].SetActive(false);
-                if (indexToSetActive >= ObjectPooling.instance.amountToPool - 1) indexToSetActive = 0;
+                indexToSetActive++;
+                if (indexToSetActive > ObjectPooling.instance.amountToPool - 1) indexToSetActive = 0;
                 circle = ObjectPooling.instance.getObjectPooling();
                 oldHeadPos = transform.GetChild(0).position;
                 Vector3 temp = transform.GetChild(0).position;
-                transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.45f);
-                // temp = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.1f);
-                //transform.GetChild(0).position = new Vector3(temp.x, transform.GetChild(0).position.y, transform.GetChild(0).position.z);
+                transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.45f);              
                 Vector2 headDirection = (transform.GetChild(0).position - oldHeadPos);
                 transform.GetChild(0).eulerAngles = new Vector3(0, 0, -Mathf.Atan(headDirection.x / headDirection.y) * 180 / Mathf.PI);
                 if (objectsPooling.Count > 0)

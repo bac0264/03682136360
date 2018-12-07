@@ -15,25 +15,13 @@ public class AbstractFactory : MonoBehaviour
     public List<string> listTag;
     public List<int> listLayer;
     public GameObject headSnake;
-    // private GameObjectInstantiator instantiator;
-    /* public AbstractFactory(GameObject prefab)
-     {
-         instantiator = gameObject.AddComponent(typeof(GameObjectInstantiator)) as GameObjectInstantiator;
-         Debug.Log(instantiator);
-         instantiator.setPrefab(prefab);
-     }*/
-
-    /* private void Start()
-     { 
-         instantiator.CreateInstance();
-     }*/
     public int getIndexTagOfObject(string tag)
     {
         for (int i = 0; i < listTag.Count; i++)
         {
-            if (tag == listTag[i]) return i;
+            if (tag.Equals(listTag[i])) return i;
         }
-        return 0;
+        return -1;
     }
     public int getIndexLayerOfObject(int layer)
     {
@@ -59,6 +47,7 @@ public class AbstractFactory : MonoBehaviour
         }
         return 0;
     }
+
     private void Start()
     {
         StartCoroutine(generate());
@@ -78,7 +67,6 @@ public class AbstractFactory : MonoBehaviour
     public void createPref(float value)
     {
         int index = Random.Range(0, (listPref.Count));
-        Debug.Log("index: " + index);
         GameObject go = Instantiate(listPref[index]);
         go.transform.position = new Vector3(0, value, 0);
         randomGameObject(go);
@@ -88,7 +76,6 @@ public class AbstractFactory : MonoBehaviour
     {
         // Check child
         int count = prefabs.transform.childCount;
-        Debug.Log("Count: " + count);
         if (count < 1) return;
         else
         {
@@ -100,13 +87,11 @@ public class AbstractFactory : MonoBehaviour
             {
                 randomIndex = Random.Range(1, count);
             }
-            Debug.Log("randomIndex:" +randomIndex);
             if (check)
             { // vi tri trung mau voi CC
                 for (int i = 0; i < count; i++)
                 {
                     int random = Random.Range(0, listTri.Count);
-                    Debug.Log("Random:" + random);
                     if (i == 0) marked = random;
                     else
                     {
@@ -128,13 +113,10 @@ public class AbstractFactory : MonoBehaviour
                 for (int i = 0; i < count; i++)
                 {
                     int random = Random.Range(0, listTri.Count);
-                    Debug.Log("random before " + i +" : " + random);
                     if (i == 0)
                     {
                         random = getIndexTagOfObject(headSnake.tag);
-                        Debug.Log("random marked " + i + " : " + random);
                         marked = random;
-                        Debug.Log("marked: " + marked);
                     }
                     else
                     {
@@ -147,7 +129,6 @@ public class AbstractFactory : MonoBehaviour
                             }
                         }
                     }
-                    Debug.Log("random after " + i + " : " + random);
                     findingObject(childs, i, random);
                 }
             }

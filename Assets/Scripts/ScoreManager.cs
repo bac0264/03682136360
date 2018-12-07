@@ -8,7 +8,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
     public int score = 0;
     public Text scoreText;
-    public int star = 0;
+    public int star;
     public Text starText;
     public const string highScore = "HighScore";
     public const string starScore = "StarScore";
@@ -16,7 +16,7 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
-        star = PlayerPrefs.GetInt(starScore);
+        star = getStar();
         starDisplay();
     }
     public void scoreDisplay()

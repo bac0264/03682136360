@@ -11,10 +11,11 @@ public class SaveLoad : MonoBehaviour
     {
         if (instance == null) instance = this;
     }
+    [Serializable]
     public class SaveData
     {
-        public List<snakeHeadItem> markedList = new List<snakeHeadItem>();
-        public List<snakeHeadItem> bought = new List<snakeHeadItem>();
+        public List<snakeHeadItem> shopList = new List<snakeHeadItem>();
+        public List<snakeHeadItem> boughts = new List<snakeHeadItem>();
         public int currentSnake;
         public int star;
     }
@@ -24,9 +25,15 @@ public class SaveLoad : MonoBehaviour
         {
             SaveData saveData = new SaveData();
             // Save Data
+            saveData.shopList.Clear();
+            saveData.boughts.Clear();
+            for (int i = 0; i < ShopManager.instance.boughtList.Count; i++)
+            {
+                saveData.boughts.Add(ShopManager.instance.boughtList[i]);
+            }
             for (int i = 0; i < ShopManager.instance.snakeHeadList.Count; i++)
             {
-                saveData.markedList.Add(ShopManager.instance.snakeHeadList[i]);
+                saveData.shopList.Add(ShopManager.instance.snakeHeadList[i]);
             }
             saveData.currentSnake = ShopManager.instance.currentID;
             saveData.star = ShopManager.instance.star;
@@ -55,6 +62,18 @@ public class SaveLoad : MonoBehaviour
                 saveData = (SaveData)bf.Deserialize(fs);
                 fs.Close();
                 // do somthing
+                ShopManager.instance.boughtList.Clear();
+                ShopManager.instance.snakeHeadList.Clear();
+                for (int i = 0; i < saveData.boughts.Count; i++)
+                {
+                    ShopManager.instance.boughtList.Add(saveData.boughts[i]);
+                }
+                for (int i = 0; i < saveData.shopList.Count; i++)
+                {
+                    ShopManager.instance.snakeHeadList.Add(saveData.shopList[i]);
+                }
+                ShopManager.instance.currentID = saveData.currentSnake;
+                ShopManager.instance.star = saveData.star;
             }
             catch (Exception e)
             {

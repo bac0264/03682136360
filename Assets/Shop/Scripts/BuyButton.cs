@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class BuyButton : MonoBehaviour {
 
     public static BuyButton instance;
@@ -19,7 +19,7 @@ public class BuyButton : MonoBehaviour {
             return;
         }
         // gameObject.GetComponent<Animator>().Play("PickUp");
-        Debug.Log("Spaceshipid: " + snakeID);
+
         for (int i = 0; i < ShopManager.instance.snakeHeadList.Count; i++)
         {
             // check id
@@ -28,7 +28,8 @@ public class BuyButton : MonoBehaviour {
                 // check bought
                 if (!ShopManager.instance.snakeHeadList[i].bought)
                 {
-                    Panel.GetComponent<BuyingPanel>().curID = snakeID;                 
+                    Panel.GetComponent<BuyingPanel>().curID = snakeID;
+                    Panel.GetComponent<Shop_PopUp>().UpdateUI(int.Parse(ShopManager.instance.snakeHeadList[i].cost));
                     Instantiate(Panel, null);
                   //  Panel.GetComponent<Animator>().Play("In");
                 }

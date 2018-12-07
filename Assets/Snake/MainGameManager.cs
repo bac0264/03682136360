@@ -73,4 +73,8 @@ public class MainGameManager : MonoBehaviour {
         SceneManager.LoadScene("maingame");
         Time.timeScale = 1;
     }
+    public void MenuGame()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }
