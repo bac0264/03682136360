@@ -70,14 +70,15 @@ public class AbstractFactory : MonoBehaviour
         for(int i = 0; i < listPref.Count; i++)
         {
             createPref(temp);
-            yield return new WaitForSeconds(4f);
-            temp = Camera.main.transform.position.y + 10;
+            yield return new WaitForSeconds(3f);
+            temp = Camera.main.transform.position.y + 12;
         }
         StartCoroutine(generate());
     }
     public void createPref(float value)
     {
         int index = Random.Range(0, (listPref.Count));
+        Debug.Log("index: " + index);
         GameObject go = Instantiate(listPref[index]);
         go.transform.position = new Vector3(0, value, 0);
         randomGameObject(go);
@@ -87,6 +88,7 @@ public class AbstractFactory : MonoBehaviour
     {
         // Check child
         int count = prefabs.transform.childCount;
+        Debug.Log("Count: " + count);
         if (count < 1) return;
         else
         {
@@ -94,9 +96,13 @@ public class AbstractFactory : MonoBehaviour
             Transform childs = prefabs.transform;
             // vi tri se trung mau voi barrier cc
             int randomIndex = Random.Range(1, count);
+            while(childs.GetChild(randomIndex).gameObject.layer == 13)
+            {
+                randomIndex = Random.Range(1, count);
+            }
             Debug.Log("randomIndex:" +randomIndex);
             if (check)
-            { // vi tri trung mau voi ran
+            { // vi tri trung mau voi CC
                 for (int i = 0; i < count; i++)
                 {
                     int random = Random.Range(0, listTri.Count);
@@ -116,12 +122,20 @@ public class AbstractFactory : MonoBehaviour
                     findingObject(childs, i, random);
                 }
             }
+            // cung mau voi ran
             else
             {
                 for (int i = 0; i < count; i++)
                 {
                     int random = Random.Range(0, listTri.Count);
-                    if (i == 0) random = getIndexTagOfObject(headSnake.tag);
+                    Debug.Log("random before " + i +" : " + random);
+                    if (i == 0)
+                    {
+                        random = getIndexTagOfObject(headSnake.tag);
+                        Debug.Log("random marked " + i + " : " + random);
+                        marked = random;
+                        Debug.Log("marked: " + marked);
+                    }
                     else
                     {
                         if (i == randomIndex) random = marked;
@@ -133,6 +147,7 @@ public class AbstractFactory : MonoBehaviour
                             }
                         }
                     }
+                    Debug.Log("random after " + i + " : " + random);
                     findingObject(childs, i, random);
                 }
             }
