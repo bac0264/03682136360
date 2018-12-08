@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-C:/Users/User/Desktop/SnakeGame_v2/Snake_20181207_1.apk
+C:/Users/User/Desktop/SnakeGame_v2/Snake_20181208_1.apk
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/maingame.unity
@@ -112,7 +112,7 @@ c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.A
 0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 66b3109aa5921cf800bec17926c6adba Unity.TextMeshPro.dll:TMPro.TMP_SubMeshUI
-b7acd63737da50a54eba286c2816bd2d Assembly-CSharp.dll:.SnakeHead
+ad4152122173410ddb61afbf69ebb48c Assembly-CSharp.dll:.SnakeHead
 e4bdd26a057ab50c4484f4d4354dd032 Assembly-CSharp.dll:.BuyButton
 201273fb4f889724fb090164b7d6c657 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour

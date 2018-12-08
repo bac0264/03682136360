@@ -9,6 +9,7 @@ public class SnakeHead : MonoBehaviour
     public List<GameObject> deadEffect;
     public List<string> listTag;
     public List<GameObject> deadCCEffect;
+    public GameObject starExp;
     public GameObject popup;
     int score = 0;
     int star;
@@ -37,6 +38,7 @@ public class SnakeHead : MonoBehaviour
             ScoreManager.instance.setHighScore(score);
             Destroy(Instantiate(deadEffect[_index], col.transform.position, Quaternion.identity), 3);
             Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
+            col.transform.DOScale(0, 0.5f);
             yield return fadeout.WaitForCompletion();
             Destroy(col.gameObject);
         }
@@ -52,6 +54,7 @@ public class SnakeHead : MonoBehaviour
             Destroy(Instantiate(deadCCEffect[_index], col.transform.position, Quaternion.identity), 3);
             //effect.GetComponent<ParticleSystem>().Play();
             Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
+            col.transform.DOScale(0, 0.5f);
             yield return fadeout.WaitForCompletion();
             Destroy(col.gameObject);
             int index = factory.getIndexTagOfObject(col.gameObject.tag);
@@ -67,8 +70,9 @@ public class SnakeHead : MonoBehaviour
                 star++;
                 ScoreManager.instance.setStar(star);
                 ScoreManager.instance.starDisplay();
-                Destroy(Instantiate(deadEffect[3], col.transform.position, Quaternion.identity), 3);
+                Destroy(Instantiate(starExp, col.transform.position, Quaternion.identity), 3);
                 Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
+                col.transform.DOScale(0, 0.5f);
                 yield return fadeout.WaitForCompletion();
                 Destroy(col.gameObject);
             }

@@ -50,6 +50,7 @@ public class AbstractFactory : MonoBehaviour
 
     private void Start()
     {
+        marked = -1;
         StartCoroutine(generate());
     }
     // tạo ra cục pref to
@@ -110,13 +111,22 @@ public class AbstractFactory : MonoBehaviour
             // cung mau voi ran
             else
             {
+                Debug.Log("snake Tag" + headSnake.tag);
                 for (int i = 0; i < count; i++)
                 {
                     int random = Random.Range(0, listTri.Count);
+                    Debug.Log("random truoc" + i + ": " + random);
                     if (i == 0)
                     {
-                        random = getIndexTagOfObject(headSnake.tag);
-                        marked = random;
+                        if (marked < 0 )
+                        {
+                            random = getIndexTagOfObject(headSnake.tag);
+                            marked = random;
+                            Debug.Log("Marked _ 1: " + marked);
+                        }
+                        else
+                            random = marked;
+                        Debug.Log("Marked _ 2: " + marked);
                     }
                     else
                     {
@@ -129,6 +139,7 @@ public class AbstractFactory : MonoBehaviour
                             }
                         }
                     }
+                    Debug.Log("random sau" + i + ": " + random);
                     findingObject(childs, i, random);
                 }
             }

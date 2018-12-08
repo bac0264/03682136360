@@ -32,7 +32,6 @@ public class ObjectPooling : MonoBehaviour
                 return pooledObjects[i];
             }
         }
-
         return null;
     }
     public int amountOfFalse()
