@@ -17,12 +17,19 @@ public class Snake : MonoBehaviour
     public List<Material> listMaterial; // color of snake
     public List<string> listTag = new List<string>();
     public List<Sprite> listSnakeTail; // color of tail color
+    public List<Sprite> listSpecialHead;
+    public List<Material> specialList;
     public string tag;
+    public GameObject special;
     public GameObject circle;
+    public GameObject objectPooling;
+    public GameObject specialPooling;
+    public List<GameObject> specialsPooling = new List<GameObject>();
     public List<GameObject> objectsPooling = new List<GameObject>();
     int tempOP = 0;
     public int indexToTransform = 0;
     public int indexToSetActive = 0;
+    public int indextoSetActiveSpecailOb = 0;
     private void Awake()
     {
         //Color startColor = ColorOfSnake[Random.Range(0, ColorOfSnake.Length)];
@@ -34,24 +41,50 @@ public class Snake : MonoBehaviour
         gameObject.transform.GetChild(0).tag = listTag[random];
         transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = listSnakeTail[random];
     }
-    public void Change(int index,GameObject _circle)
+    public void Change(int index)
     {
-        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = listSnakeHead[index];
-        //Destroy(body, 3f); //xoa body cu
-                           //body = Instantiate(bodyPrefab, transform);
-                           //tao body moi
-
-        // body.GetComponent<LineRenderer>().material = listMaterial[index];
-        circle.GetComponent<LineRenderer>().material = listMaterial[index];
-        tag = listTag[index];
-        transform.GetChild(0).tag = tag;
-       // bodyPos.Clear();
-        //for (int i = 0; i < body.transform.GetComponent<LineRenderer>().positionCount; i++)
-        //{
-        //    bodyPos.Add(transform.GetChild(0).position);
-        //}
-        //body.GetComponent<LineRenderer>().SetPositions(bodyPos.ToArray());
-
+        if (index < 4)
+        {
+            specialPooling.SetActive(false);
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = listSnakeHead[index];
+            circle.GetComponent<LineRenderer>().material = listMaterial[index];
+            tag = listTag[index];
+            transform.GetChild(0).tag = tag;
+        }
+        else
+        {
+            specialPooling.SetActive(true);
+            //transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = listSpecialHead[index % 4];
+            circle.GetComponent<LineRenderer>().material = listMaterial[index % 4];
+            special = specialPooling.GetComponent<ObjectPooling>().getObjectPooling();
+            if (special != null)
+            {
+                if (specialsPooling.Count < specialPooling.GetComponent<ObjectPooling>().amountToPool)
+                    specialsPooling.Add(special);
+            }
+            else
+            {
+                specialsPooling[indextoSetActiveSpecailOb].SetActive(false);
+                indextoSetActiveSpecailOb++;
+                //if (indexToSetActive > ObjectPooling.instance.amountToPool - 1)
+                if (indextoSetActiveSpecailOb > specialPooling.GetComponent<ObjectPooling>().amountToPool - 1)
+                    indextoSetActiveSpecailOb = 0;
+                //circle = ObjectPooling.instance.getObjectPooling();
+                special = specialPooling.GetComponent<ObjectPooling>().getObjectPooling();
+            }
+            if (specialsPooling.Count > 0)
+            {
+                // objectsPooling.RemoveAt(0);//circle.transform.position = transform.GetChild(0).position;
+                if (special != null)
+                {
+                    special.SetActive(true);
+                    special.GetComponent<LineRenderer>().SetPosition(0, oldHeadPos);
+                    special.GetComponent<LineRenderer>().SetPosition(1, transform.GetChild(0).position);
+                    special.GetComponent<LineRenderer>().SetWidth(0.2f, 0.5f);
+                    special.GetComponent<LineRenderer>().material = specialList[0];
+                }
+            }
+        }
     }
     // Update is called once per frame
     void LateUpdate()
@@ -68,9 +101,12 @@ public class Snake : MonoBehaviour
         //    bodyPos.RemoveAt(0);
         // bodyPos.Add(transform.GetChild(0).position);
         // body.GetComponent<LineRenderer>().SetPositions(bodyPos.ToArray());
-        if (ObjectPooling.instance != null)
+
+        //if (ObjectPooling.instance != null)
+        if(objectPooling != null)
         {
-            circle = ObjectPooling.instance.getObjectPooling();
+            // circle = ObjectPooling.instance.getObjectPooling();
+            circle = objectPooling.GetComponent<ObjectPooling>().getObjectPooling();
             if (circle != null)
             {
                 oldHeadPos = transform.GetChild(0).position;
@@ -80,7 +116,8 @@ public class Snake : MonoBehaviour
                 //transform.GetChild(0).position = new Vector3(temp.x, transform.GetChild(0).position.y, transform.GetChild(0).position.z);
                 Vector2 headDirection = (transform.GetChild(0).position - oldHeadPos);
                 transform.GetChild(0).eulerAngles = new Vector3(0, 0, -Mathf.Atan(headDirection.x / headDirection.y) * 180 / Mathf.PI);
-                if (objectsPooling.Count < ObjectPooling.instance.amountToPool)
+               // if (objectsPooling.Count < ObjectPooling.instance.amountToPool)
+               if(objectsPooling.Count < objectPooling.GetComponent<ObjectPooling>().amountToPool)
                     objectsPooling.Add(circle);
                 if (objectsPooling.Count > 0)
                 {
@@ -91,7 +128,7 @@ public class Snake : MonoBehaviour
                         circle.SetActive(true);
                         circle.GetComponent<LineRenderer>().SetPosition(0, oldHeadPos);
                         circle.GetComponent<LineRenderer>().SetPosition(1, transform.GetChild(0).position);
-                        Change(indexToTransform, circle);
+                        Change(indexToTransform);
                     }
                 }
             }
@@ -99,8 +136,11 @@ public class Snake : MonoBehaviour
             {
                 objectsPooling[indexToSetActive].SetActive(false);
                 indexToSetActive++;
-                if (indexToSetActive > ObjectPooling.instance.amountToPool - 1) indexToSetActive = 0;
-                circle = ObjectPooling.instance.getObjectPooling();
+                //if (indexToSetActive > ObjectPooling.instance.amountToPool - 1)
+                if(indexToSetActive > objectPooling.GetComponent<ObjectPooling>().amountToPool - 1)
+                    indexToSetActive = 0;
+                //circle = ObjectPooling.instance.getObjectPooling();
+                circle = objectPooling.GetComponent<ObjectPooling>().getObjectPooling();
                 oldHeadPos = transform.GetChild(0).position;
                 Vector3 temp = transform.GetChild(0).position;
                 transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.45f);              
@@ -114,16 +154,17 @@ public class Snake : MonoBehaviour
                         //circle.GetComponent<LineRenderer>().material = listMaterial[1];
                         circle.SetActive(true);
                         circle.GetComponent<LineRenderer>().SetPosition(0, oldHeadPos);
-                        circle.GetComponent<LineRenderer>().SetPosition(1, transform.GetChild(0).position);
-                        Change(indexToTransform, circle);
+                        circle.GetComponent<LineRenderer>().SetPosition(1, transform.GetChild(0).position);                       
+                        Change(indexToTransform);
                     }
                 }
             }
+
         }
         //}
         //}
     }
-    IEnumerator tiemToSetActive()
+    IEnumerator timeToSetActive()
     {
         yield return new WaitForSeconds(10f);
         for (int i = tempOP * 100; i < ((objectsPooling.Count / 2) * (tempOP + 1)); i++)

@@ -93,7 +93,14 @@ public class AbstractFactory : MonoBehaviour
                 for (int i = 0; i < count; i++)
                 {
                     int random = Random.Range(0, listTri.Count);
-                    if (i == 0) marked = random;
+                    if (i == 0) {
+                        int colorOfSnake = getIndexTagOfObject(headSnake.tag);
+                        while (colorOfSnake == random)
+                        {
+                            random = Random.Range(0, listTri.Count);
+                        }
+                        marked = random;
+                    }
                     else
                     {
                         if (i == randomIndex) random = marked;
