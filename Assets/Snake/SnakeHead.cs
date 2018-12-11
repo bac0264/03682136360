@@ -36,7 +36,7 @@ public class SnakeHead : MonoBehaviour
             ScoreManager.instance.setScore(score);
             ScoreManager.instance.scoreDisplay();
             ScoreManager.instance.setHighScore(score);
-            Destroy(Instantiate(deadEffect[_index], col.transform.position, Quaternion.identity), 3);
+            Destroy(Instantiate(deadEffect[_index], col .transform.position, Quaternion.identity), 3);
             Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
             col.transform.DOScale(0, 0.5f);
             yield return fadeout.WaitForCompletion();
@@ -82,6 +82,25 @@ public class SnakeHead : MonoBehaviour
         {
 
         }
+        else if (col.gameObject.tag.Equals("Special")){
+            col.GetComponent<Collider2D>().enabled = false;
+            score += 2;
+            ScoreManager.instance.setScore(score);
+            ScoreManager.instance.scoreDisplay();
+            ScoreManager.instance.setHighScore(score);
+            int pos = factory.getIndexTagOfObject(gameObject.tag);
+            string tagName = gameObject.tag;
+            //int index = factory.getIndexLayerOfObject()
+            snake.indexToTransform = pos + 4;
+            gameObject.tag = "Special";
+            Destroy(Instantiate(starExp, col.transform.position, Quaternion.identity), 3);
+            Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
+            yield return fadeout.WaitForCompletion();
+            Destroy(col.gameObject);
+            yield return new WaitForSeconds(3f);
+            snake.indexToTransform = pos;
+            gameObject.tag = tagName;
+        }
         else
         {
             Time.timeScale = 0;
@@ -91,10 +110,69 @@ public class SnakeHead : MonoBehaviour
             Instantiate(popup);
         }
     }
+    IEnumerator process_2(Collider2D col)
+    {
+        int _index = getIndexTag(col.tag);
+        if (col.gameObject.layer != 12 && !col.gameObject.layer.Equals(13) && !col.gameObject.layer.Equals(14))
+        {
+            col.GetComponent<Collider2D>().enabled = false;
+            score++;
+            ScoreManager.instance.setScore(score);
+            ScoreManager.instance.scoreDisplay();
+            ScoreManager.instance.setHighScore(score);
+            Destroy(Instantiate(deadEffect[_index], col.transform.position, Quaternion.identity), 3);
+            Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
+            col.transform.DOScale(0, 0.5f);
+            yield return fadeout.WaitForCompletion();
+            Destroy(col.gameObject);
+        }
+        // Change color
+        else if (col.gameObject.layer.Equals(12))
+        {
+            col.GetComponent<Collider2D>().enabled = false;
+            score += 2;
+            ScoreManager.instance.setScore(score);
+            ScoreManager.instance.scoreDisplay();
+            ScoreManager.instance.setHighScore(score);
+            //int index = factory.getIndexLayerOfObject()
+            Destroy(Instantiate(deadCCEffect[_index], col.transform.position, Quaternion.identity), 3);
+            //effect.GetComponent<ParticleSystem>().Play();
+            Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
+            col.transform.DOScale(0, 0.5f);
+            yield return fadeout.WaitForCompletion();
+            Destroy(col.gameObject);
+            int index = factory.getIndexTagOfObject(col.gameObject.tag);
+            snake.indexToTransform = index;
+            //snake.Change(index,snake.GetComponent<Snake>().circle);
+        }
+        // Star
+        else if (col.gameObject.layer.Equals(13))
+        {
+            if (ScoreManager.instance != null)
+            {
+                col.GetComponent<Collider2D>().enabled = false;
+                star++;
+                ScoreManager.instance.setStar(star);
+                ScoreManager.instance.starDisplay();
+                Destroy(Instantiate(starExp, col.transform.position, Quaternion.identity), 3);
+                Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
+                col.transform.DOScale(0, 0.5f);
+                yield return fadeout.WaitForCompletion();
+                Destroy(col.gameObject);
+            }
+        }
+    }
     public void OnTriggerEnter2D(Collider2D col)
     {
         // Va cham voi cac vat can
-        StartCoroutine(process(col));
+        if (gameObject.tag.Equals("Special"))
+        {
+            StartCoroutine(process_2(col));
+        }
+        else
+        {
+            StartCoroutine(process(col));
+        }
     }
 
 

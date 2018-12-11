@@ -17,6 +17,7 @@ public class Snake : MonoBehaviour
     public List<Material> listMaterial; // color of snake
     public List<string> listTag = new List<string>();
     public List<Sprite> listSnakeTail; // color of tail color
+    public List<Sprite> listSpecialHead;
     public string tag;
     public GameObject circle;
     public List<GameObject> objectsPooling = new List<GameObject>();
@@ -34,24 +35,20 @@ public class Snake : MonoBehaviour
         gameObject.transform.GetChild(0).tag = listTag[random];
         transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = listSnakeTail[random];
     }
-    public void Change(int index,GameObject _circle)
+    public void Change(int index)
     {
-        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = listSnakeHead[index];
-        //Destroy(body, 3f); //xoa body cu
-                           //body = Instantiate(bodyPrefab, transform);
-                           //tao body moi
-
-        // body.GetComponent<LineRenderer>().material = listMaterial[index];
-        circle.GetComponent<LineRenderer>().material = listMaterial[index];
-        tag = listTag[index];
-        transform.GetChild(0).tag = tag;
-       // bodyPos.Clear();
-        //for (int i = 0; i < body.transform.GetComponent<LineRenderer>().positionCount; i++)
-        //{
-        //    bodyPos.Add(transform.GetChild(0).position);
-        //}
-        //body.GetComponent<LineRenderer>().SetPositions(bodyPos.ToArray());
-
+        if (index < 4)
+        {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = listSnakeHead[index];
+            circle.GetComponent<LineRenderer>().material = listMaterial[index];
+            tag = listTag[index];
+            transform.GetChild(0).tag = tag;
+        }
+        else
+        {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = listSpecialHead[index%4];
+            circle.GetComponent<LineRenderer>().material = listMaterial[index%4];
+        }
     }
     // Update is called once per frame
     void LateUpdate()
@@ -82,18 +79,6 @@ public class Snake : MonoBehaviour
                 transform.GetChild(0).eulerAngles = new Vector3(0, 0, -Mathf.Atan(headDirection.x / headDirection.y) * 180 / Mathf.PI);
                 if (objectsPooling.Count < ObjectPooling.instance.amountToPool)
                     objectsPooling.Add(circle);
-                if (objectsPooling.Count > 0)
-                {
-                    // objectsPooling.RemoveAt(0);//circle.transform.position = transform.GetChild(0).position;
-                    if (circle != null)
-                    {
-                        //circle.GetComponent<LineRenderer>().material = listMaterial[1];
-                        circle.SetActive(true);
-                        circle.GetComponent<LineRenderer>().SetPosition(0, oldHeadPos);
-                        circle.GetComponent<LineRenderer>().SetPosition(1, transform.GetChild(0).position);
-                        Change(indexToTransform, circle);
-                    }
-                }
             }
             else
             {
@@ -106,17 +91,17 @@ public class Snake : MonoBehaviour
                 transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.45f);              
                 Vector2 headDirection = (transform.GetChild(0).position - oldHeadPos);
                 transform.GetChild(0).eulerAngles = new Vector3(0, 0, -Mathf.Atan(headDirection.x / headDirection.y) * 180 / Mathf.PI);
-                if (objectsPooling.Count > 0)
+            }
+            if (objectsPooling.Count > 0)
+            {
+                // objectsPooling.RemoveAt(0);//circle.transform.position = transform.GetChild(0).position;
+                if (circle != null)
                 {
-                    // objectsPooling.RemoveAt(0);//circle.transform.position = transform.GetChild(0).position;
-                    if (circle != null)
-                    {
-                        //circle.GetComponent<LineRenderer>().material = listMaterial[1];
-                        circle.SetActive(true);
-                        circle.GetComponent<LineRenderer>().SetPosition(0, oldHeadPos);
-                        circle.GetComponent<LineRenderer>().SetPosition(1, transform.GetChild(0).position);
-                        Change(indexToTransform, circle);
-                    }
+                    //circle.GetComponent<LineRenderer>().material = listMaterial[1];
+                    circle.SetActive(true);
+                    circle.GetComponent<LineRenderer>().SetPosition(0, oldHeadPos);
+                    circle.GetComponent<LineRenderer>().SetPosition(1, transform.GetChild(0).position);
+                    Change(indexToTransform);
                 }
             }
         }
