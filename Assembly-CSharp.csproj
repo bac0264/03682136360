@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\Factory\HCN.cs" />
     <Compile Include="Assets\Scripts\Factory\Square.cs" />
     <Compile Include="Assets\Scripts\Factory\TriAngle.cs" />
+    <Compile Include="Assets\Scripts\LevelChanger.cs" />
     <Compile Include="Assets\Scripts\ObjectPooling.cs" />
     <Compile Include="Assets\Scripts\PopUp.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />

@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-C:/Users/User/Desktop/SnakeGame_v2/Snake_20181208_1.apk
+C:/Users/pv/Desktop/SnakeGame_v2/snake 2018 12 12 _ 1.apk
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/maingame.unity
@@ -202,7 +202,8 @@ b12508de8061fc30c785ac01869eb6af Assembly-CSharp.dll:EpicToonFX.ETFXLightFade
 0feac9b4350cc5fc40cd28b2ff56ad07 Assembly-CSharp.dll:DG.Tweening.DOTweenAnimation
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 3dce1fab54c9109f286b1e70e263dc09 Assembly-CSharp.dll:.MainGameManager
-b9ad6c6b5790a7cab0f164dfb01de605 Assembly-CSharp.dll:.Snake
+c9c454f0ed6ef1995762a8a0ea0b5ce0 Assembly-CSharp.dll:.LevelChanger
+f73fbf8bc34097bcd0060666a595a746 Assembly-CSharp.dll:.Snake
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 5ddb05eaa4916d9869e1ce9baeeb342e Assembly-CSharp.dll:.PEButtonScript
