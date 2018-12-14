@@ -9,15 +9,23 @@ public class SaveLoad : MonoBehaviour
     public static SaveLoad instance;
     private void Awake()
     {
-        if (instance == null) instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     [Serializable]
     public class SaveData
     {
         public List<snakeHeadItem> shopList = new List<snakeHeadItem>();
         public List<snakeHeadItem> boughts = new List<snakeHeadItem>();
-        public int currentSnake;
-        public int star;
+        public int currentSnake = 1;
+        public int star = 0;
     }
     public void saving()
     {

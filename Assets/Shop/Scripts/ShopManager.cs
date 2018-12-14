@@ -18,9 +18,7 @@ public class ShopManager : MonoBehaviour
     public int count;
     private void Awake()
     {
-        currentID = PlayerPrefs.GetInt("currentID");
         if (instance == null) instance = this;
-        _IsGameStartedForTheFirstTime();
         _setupStar();
     }
     void _setupStar()
@@ -117,16 +115,6 @@ public class ShopManager : MonoBehaviour
     void UpdateStar()
     {
         starText.text = star.ToString();
-    }
-    void _IsGameStartedForTheFirstTime()
-    {
-
-        if (!PlayerPrefs.HasKey("IsGameStartedForTheFirstTime"))
-        {
-            PlayerPrefs.SetInt("currentID", 1);
-            PlayerPrefs.SetInt("IsGameStartedForTheFirstTime", 0);
-        }
-
     }
     public void Home()
     {

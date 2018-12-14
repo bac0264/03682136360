@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-C:/Users/User/Desktop/SnakeGame_v2/Snake_20181208_1.apk
+C:/Users/User/Desktop/CL Snake/SnakeGame_v2/snake_20181214_5.apk
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/maingame.unity
@@ -63,9 +63,10 @@ e90403eeda069970e0b9de1533de13a6 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 2d58ca16854b99daea8c45e9c0f367b7 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 16da51d1b62ef6d4ee1849350434023b UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 50b0b141074b216c8b53b1bd467f73c9 Unity.TextMeshPro.dll:TMPro.TMP_InputField
-17bd9e60032156f0482a8d5a9a14150b Assembly-CSharp.dll:.AbstractFactory
+71bbe0688f343415a0f678347f2528c0 Assembly-CSharp.dll:.AbstractFactory
 05423589d14f35150bab82a335e3c458 Assembly-CSharp.dll:.ETFXProjectileScript
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.BGScaler
+2856348d0fe625a05d6d33024f3ba672 Assembly-CSharp.dll:.MenuManager
 53cefe5d98cadefbab750835e70b89c0 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 da2091a04d360891450faf16cdf621f1 UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -112,7 +113,7 @@ c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.A
 0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 66b3109aa5921cf800bec17926c6adba Unity.TextMeshPro.dll:TMPro.TMP_SubMeshUI
-ad4152122173410ddb61afbf69ebb48c Assembly-CSharp.dll:.SnakeHead
+3c4b74c978f7f92bc4901b540cfc46fb Assembly-CSharp.dll:.SnakeHead
 e4bdd26a057ab50c4484f4d4354dd032 Assembly-CSharp.dll:.BuyButton
 201273fb4f889724fb090164b7d6c657 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -202,7 +203,8 @@ b12508de8061fc30c785ac01869eb6af Assembly-CSharp.dll:EpicToonFX.ETFXLightFade
 0feac9b4350cc5fc40cd28b2ff56ad07 Assembly-CSharp.dll:DG.Tweening.DOTweenAnimation
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 3dce1fab54c9109f286b1e70e263dc09 Assembly-CSharp.dll:.MainGameManager
-f73fbf8bc34097bcd0060666a595a746 Assembly-CSharp.dll:.Snake
+c9c454f0ed6ef1995762a8a0ea0b5ce0 Assembly-CSharp.dll:.LevelChanger
+548efd074a5559171291474da61caed2 Assembly-CSharp.dll:.Snake
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 5ddb05eaa4916d9869e1ce9baeeb342e Assembly-CSharp.dll:.PEButtonScript

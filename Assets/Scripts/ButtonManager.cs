@@ -11,10 +11,24 @@ public class ButtonManager : MonoBehaviour {
 	
 	public void nextMainGame()
     {
-        SceneManager.LoadScene("maingame");
+        if (LevelChanger.instance != null)
+        {
+            LevelChanger.instance.FadeInfc("maingame");
+        }
     }
     public void nextShop()
     {
-        SceneManager.LoadScene("Shop");
+        if (LevelChanger.instance != null)
+        {
+            LevelChanger.instance.FadeInfc("shop");
+        }
+    }
+    public void backMain()
+    {
+        Time.timeScale = 1;
+        if (LevelChanger.instance != null)
+        {
+            LevelChanger.instance.FadeInfc("Menu");
+        }
     }
 }

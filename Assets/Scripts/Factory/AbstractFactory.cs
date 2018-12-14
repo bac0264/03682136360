@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class AbstractFactory : MonoBehaviour
 {
     public List<Sprite> listTri;
@@ -11,7 +11,10 @@ public class AbstractFactory : MonoBehaviour
     public List<Sprite> listChangeColor;
     public List<GameObject> listPref;
     public int marked;
+    public int marked_2;
+    public int marked_3;
     public Sprite Star;
+    public Sprite special;
     public List<string> listTag;
     public List<int> listLayer;
     public GameObject headSnake;
@@ -57,7 +60,7 @@ public class AbstractFactory : MonoBehaviour
     IEnumerator generate()
     {
         float temp = Camera.main.transform.position.y + 10;
-        for(int i = 0; i < listPref.Count; i++)
+        for (int i = 0; i < listPref.Count; i++)
         {
             createPref(temp);
             yield return new WaitForSeconds(3f);
@@ -84,7 +87,7 @@ public class AbstractFactory : MonoBehaviour
             Transform childs = prefabs.transform;
             // vi tri se trung mau voi barrier cc
             int randomIndex = Random.Range(1, count);
-            while(childs.GetChild(randomIndex).gameObject.layer == 13)
+            while (childs.GetChild(randomIndex).gameObject.layer == 13 || childs.GetChild(randomIndex).GetComponent<SpriteRenderer>() == null || childs.GetChild(randomIndex).tag.Equals("Special"))
             {
                 randomIndex = Random.Range(1, count);
             }
@@ -93,7 +96,8 @@ public class AbstractFactory : MonoBehaviour
                 for (int i = 0; i < count; i++)
                 {
                     int random = Random.Range(0, listTri.Count);
-                    if (i == 0) {
+                    if (i == 0)
+                    {
                         int colorOfSnake = getIndexTagOfObject(headSnake.tag);
                         while (colorOfSnake == random)
                         {
@@ -106,13 +110,41 @@ public class AbstractFactory : MonoBehaviour
                         if (i == randomIndex) random = marked;
                         else
                         {
-                            while(random == marked)
+                            while (random == marked)
                             {
                                 random = Random.Range(0, listTri.Count);
                             }
                         }
                     }
                     findingObject(childs, i, random);
+                    if (childs.GetChild(i).childCount > 0 && !childs.GetChild(i).tag.Equals("Special"))
+                    {
+                        for (int j = 0; j < childs.GetChild(i).childCount; j++)
+                        {
+                            int random_2 = Random.Range(0, listTri.Count);
+                            if (j == 0)
+                            {
+                                int colorOfSnake_2 = getIndexTagOfObject(headSnake.tag);
+                                while (colorOfSnake_2 == random_2)
+                                {
+                                    random_2 = Random.Range(0, listTri.Count);
+                                }
+                                marked_2 = random_2;
+                            }
+                            else
+                            {
+                                if (j == randomIndex) random_2 = marked_2;
+                                else
+                                {
+                                    while (random_2 == marked_2)
+                                    {
+                                        random_2 = Random.Range(0, listTri.Count);
+                                    }
+                                }
+                            }
+                            findingObject(childs.GetChild(i), j, random_2);
+                        }
+                    }
                 }
             }
             // cung mau voi ran
@@ -125,7 +157,7 @@ public class AbstractFactory : MonoBehaviour
                     Debug.Log("random truoc" + i + ": " + random);
                     if (i == 0)
                     {
-                        if (marked < 0 )
+                        if (marked < 0)
                         {
                             random = getIndexTagOfObject(headSnake.tag);
                             marked = random;
@@ -148,13 +180,44 @@ public class AbstractFactory : MonoBehaviour
                     }
                     Debug.Log("random sau" + i + ": " + random);
                     findingObject(childs, i, random);
+                    if (childs.GetChild(i).childCount > 0 && !childs.GetChild(i).tag.Equals("Special"))
+                    {
+                        for (int j = 0; j < childs.GetChild(i).childCount; j++)
+                        {
+                            int random_2 = Random.Range(0, listTri.Count);
+                            if (j == 0)
+                            {
+                                if (marked_3 < 0)
+                                {
+                                    random_2 = getIndexTagOfObject(headSnake.tag);
+                                    marked_3 = random_2;
+                                }
+                                else
+                                    random_2 = marked_3;
+                            }
+                            else
+                            {
+                                if (j == randomIndex) random_2 = marked_3;
+                                else
+                                {
+                                    while (random_2 == marked_3)
+                                    {
+                                        random_2 = Random.Range(0, listTri.Count);
+                                    }
+                                }
+                            }
+                            findingObject(childs.GetChild(i), j, random_2);
+                        }
+
+                    }
                 }
+
             }
         }
-        return;
     }
+
     // Get Index Tag
- 
+
     //listTri; 0
     //listCircle; 1
     //listHCN; 2 
@@ -187,8 +250,14 @@ public class AbstractFactory : MonoBehaviour
                 childs.GetChild(i).tag = listTag[random];
                 break;
             default:
-                childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = Star;
-                childs.GetChild(i).gameObject.layer = 13;
+                if (childs.GetChild(i).gameObject.tag.Equals("Special"))
+                {
+                    childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = special;
+                }
+                else if (childs.GetChild(i).gameObject.layer == 13)
+                {
+                    childs.GetChild(i).GetComponent<SpriteRenderer>().sprite = Star;
+                }
                 break;
         }
     }

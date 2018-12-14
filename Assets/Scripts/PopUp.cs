@@ -7,14 +7,15 @@ public class PopUp : MonoBehaviour {
     public Text highText;
     public Text currentText;
     private void Start()
-    { 
+    {
         gameObject.GetComponent<Animator>().Play("show");
-        if(ScoreManager.instance != null)
+        if (ScoreManager.instance != null)
         {
             ScoreManager.instance.highScoreDisPlay(highText);
             ScoreManager.instance.scoreDisplay(currentText);
         }
     }
+
     public void watchVideo()
     {
 

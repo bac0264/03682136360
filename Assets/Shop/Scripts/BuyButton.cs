@@ -38,6 +38,7 @@ public class BuyButton : MonoBehaviour {
                     PlayerPrefs.SetInt("currentID", snakeID);
                     ShopManager.instance.currentID = snakeID;
                     UpdateBuyButton();
+                    SaveLoad.instance.saving();
                 }
             }
             else
