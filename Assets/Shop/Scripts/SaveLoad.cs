@@ -25,7 +25,11 @@ public class SaveLoad : MonoBehaviour
         public List<snakeHeadItem> shopList = new List<snakeHeadItem>();
         public List<snakeHeadItem> boughts = new List<snakeHeadItem>();
         public int currentSnake = 1;
-        public int star = 0;
+    }
+    [Serializable]
+    public class SaveStar
+    {
+        public int star;
     }
     public void saving()
     {
@@ -44,7 +48,6 @@ public class SaveLoad : MonoBehaviour
                 saveData.shopList.Add(ShopManager.instance.snakeHeadList[i]);
             }
             saveData.currentSnake = ShopManager.instance.currentID;
-            saveData.star = ShopManager.instance.star;
             //
             BinaryFormatter bf = new BinaryFormatter();
             FileStream fs = new FileStream(Application.persistentDataPath + "/shop.txt", FileMode.OpenOrCreate);
@@ -81,7 +84,89 @@ public class SaveLoad : MonoBehaviour
                     ShopManager.instance.snakeHeadList.Add(saveData.shopList[i]);
                 }
                 ShopManager.instance.currentID = saveData.currentSnake;
+            }
+            catch (Exception e)
+            {
+                print(e);
+            }
+        }
+    }
+    public void savingStar()
+    {
+        try
+        {
+            SaveStar saveData = new SaveStar();
+            // Save Data
+            saveData.star = ScoreManager.instance.star;
+            //
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(Application.persistentDataPath + "/star.txt", FileMode.OpenOrCreate);
+            bf.Serialize(fs, saveData);
+            fs.Close();
+        }
+        catch (Exception e)
+        {
+            print(e);
+        }
+        print("saved data to " + Application.persistentDataPath + "/star.txt");
+    }
+    public void loadingStar()
+    {
+        Debug.Log(Application.persistentDataPath + "/star.txt");
+        if (File.Exists(Application.persistentDataPath + "/star.txt"))
+        {
+            try
+            {
+                SaveStar saveData = new SaveStar();
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream fs = new FileStream(Application.persistentDataPath + "/star.txt", FileMode.Open);
+                saveData = (SaveStar)bf.Deserialize(fs);
+                fs.Close();
+                // do somthing
+                ScoreManager.instance.star = saveData.star;
+                //Debug.Log
+            }
+            catch (Exception e)
+            {
+                print(e);
+            }
+        }
+    }
+    public void savingStar_2()
+    {
+        try
+        {
+            SaveStar saveData = new SaveStar();
+            // Save Data
+            saveData.star = ShopManager.instance.star;
+            //
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = new FileStream(Application.persistentDataPath + "/star.txt", FileMode.OpenOrCreate);
+            bf.Serialize(fs, saveData);
+            fs.Close();
+        }
+        catch (Exception e)
+        {
+            print(e);
+        }
+        print("saved data to " + Application.persistentDataPath + "/star.txt");
+    }
+    public void loadingStar_2()
+    {
+        Debug.Log(Application.persistentDataPath + "/star.txt");
+        if (File.Exists(Application.persistentDataPath + "/star.txt"))
+        {
+            try
+            {
+                SaveStar saveData = new SaveStar();
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream fs = new FileStream(Application.persistentDataPath + "/star.txt", FileMode.Open);
+                saveData = (SaveStar)bf.Deserialize(fs);
+                fs.Close();
+                // do somthing
                 ShopManager.instance.star = saveData.star;
+                Debug.Log("Star: " + ShopManager.instance.star);
+                //Debug.Log
             }
             catch (Exception e)
             {

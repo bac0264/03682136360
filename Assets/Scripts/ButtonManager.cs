@@ -31,4 +31,8 @@ public class ButtonManager : MonoBehaviour {
             LevelChanger.instance.FadeInfc("Menu");
         }
     }
+    public void RateClick()
+    {
+        Application.OpenURL("market://details?id=com.Zergitas.ColorSnake2");
+    }
 }

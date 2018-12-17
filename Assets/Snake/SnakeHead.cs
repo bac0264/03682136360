@@ -12,14 +12,18 @@ public class SnakeHead : MonoBehaviour
     public List<GameObject> deadCCEffect;
     public GameObject starExp;
     public GameObject popup;
-    int score = 0;
+    public List<GameObject> snakeDeadEffect;
+    int score;
     int star;
     bool checkSpecialObject = true;
     public GameObject textEffect;
     private void Start()
     {
         if (ScoreManager.instance != null)
+        {
             star = ScoreManager.instance.getStar();
+            score = ScoreManager.instance.getScore();
+        }
     }
     int getIndexTag(string tag)
     {
@@ -32,6 +36,7 @@ public class SnakeHead : MonoBehaviour
     IEnumerator process(Collider2D col)
     {
         int _index = getIndexTag(col.tag);
+        int _snakeID = getIndexTag(gameObject.tag);
         if (col.gameObject.tag.Equals(gameObject.tag) && col.gameObject.layer != 12 && !col.gameObject.layer.Equals(13) && !col.gameObject.layer.Equals(14))
         {
             col.GetComponent<Collider2D>().enabled = false;
@@ -82,6 +87,10 @@ public class SnakeHead : MonoBehaviour
                 Destroy(Instantiate(textEffect, col.transform.position + new Vector3(0, 1, 0), Quaternion.identity), 2f);
                 ScoreManager.instance.setStar(star);
                 ScoreManager.instance.starDisplay();
+                if (SaveLoad.instance != null)
+                {
+                    SaveLoad.instance.savingStar();
+                }
                 Destroy(Instantiate(starExp, col.transform.position, Quaternion.identity), 3);
                 Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
                 col.transform.DOScale(0, 0.5f);
@@ -121,13 +130,36 @@ public class SnakeHead : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 1;
+            Destroy(Instantiate(snakeDeadEffect[_snakeID],gameObject.transform.position,Quaternion.identity),2f);
+            // Time.timeScale = 1;
+            //Camera.main.GetComponent<MainGameManager>().enabled = false;
+            //factory.gameObject.SetActive(false);
+            //snake.enabled = false;
+            //if (col.gameObject.GetComponentInParent<Animator>() != null)
+            //    col.gameObject.GetComponentInParent<Animator>().enabled = false;
+            //snake.transform.GetChild(0).GetComponent<Collider2D>().enabled = false;
+            //Instantiate(popup);
             Camera.main.GetComponent<MainGameManager>().enabled = false;
             factory.gameObject.SetActive(false);
             snake.enabled = false;
             if (col.gameObject.GetComponentInParent<Animator>() != null)
                 col.gameObject.GetComponentInParent<Animator>().enabled = false;
             snake.transform.GetChild(0).GetComponent<Collider2D>().enabled = false;
+            Transform childs = snake.objectPooling.transform;
+            Tween fade = gameObject.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
+            yield return fade.WaitForCompletion();
+            for (int i = 0; i < childs.childCount - 100; i += 3)
+            {
+                for (int j = i; j < (i+3); j++)
+                {
+                    childs.GetChild(j).GetComponent<LineRenderer>().SetWidth(0.2f, 0.3f);                   
+                }
+                yield return new WaitForFixedUpdate();
+                for (int j = i; j < (i + 3); j++)
+                {
+                    childs.GetChild(j).gameObject.SetActive(false);
+                }
+            }
             Instantiate(popup);
         }
     }
@@ -180,10 +212,15 @@ public class SnakeHead : MonoBehaviour
                 col.GetComponent<Collider2D>().enabled = false;
                 star++;
                 int addScore = 1;
+
                 textEffect.transform.GetChild(0).GetComponent<Text>().text = " + " + addScore.ToString();
                 Destroy(Instantiate(textEffect , col.transform.position + new Vector3(0, 1, 0), Quaternion.identity), 2f);
                 ScoreManager.instance.setStar(star);
                 ScoreManager.instance.starDisplay();
+                if (SaveLoad.instance != null)
+                {
+                    SaveLoad.instance.savingStar();
+                }
                 Destroy(Instantiate(starExp, col.transform.position, Quaternion.identity), 3);
                 Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
                 col.transform.DOScale(0, 0.5f);

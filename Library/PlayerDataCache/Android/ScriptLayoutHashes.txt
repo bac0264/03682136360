@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-C:/Users/User/Desktop/CL Snake/SnakeGame_v2/snake_20181214_5.apk
+C:/Users/pv/Desktop/SnakeGame_v2/20181217_1.apk
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/maingame.unity
@@ -147,6 +147,7 @@ dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 59f130e2449b6d8fb19f4c7bf2c2f791 Assembly-CSharp.dll:EpicToonFX.ETFXMouseOrbit
 c77cecabca23adaa153a754693c28ca2 Assembly-CSharp.dll:EpicToonFX.ETFXLoopScript
 6c32e0020cd8a1c9324a6cb14ec61c43 Assembly-CSharp.dll:.Circle
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.AdManager
 f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 bf0658f50b56b1134930057f5ea1565f Assembly-CSharp.dll:.Shop_PopUp
 8eb3e1f64d2087333a9c1cc452167b67 Assembly-CSharp.dll:EpicToonFX.ETFXFireProjectile
@@ -190,6 +191,7 @@ e033f131358cea5a0eabf9561e781deb UnityEngine.TestRunner.dll:UnityEngine.TestTool
 28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
 155cab2f1f57e2dd7a68a8e4085c1036 Assembly-CSharp.dll:EpicToonFX.ETFXButtonScript
 eb4450ca12671cce5ffaf7ea5f9c885c Assembly-CSharp.dll:.ParticleEffectsLibrary
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:GoogleMobileAds.Common.MobileAdsEventExecutor
 d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 486cd95c82d8305219c352c06b776e1f UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule

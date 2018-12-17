@@ -39,6 +39,7 @@ public class BuyButton : MonoBehaviour {
                     ShopManager.instance.currentID = snakeID;
                     UpdateBuyButton();
                     SaveLoad.instance.saving();
+                    SaveLoad.instance.savingStar_2();
                 }
             }
             else

@@ -33,6 +33,7 @@ public class Snake : MonoBehaviour
     public int currentHead;
     private void Awake()
     {
+        transform.GetChild(0).gameObject.SetActive(true);
         currentHead = PlayerPrefs.GetInt("currentID") - 1 ;
         //Color startColor = ColorOfSnake[Random.Range(0, ColorOfSnake.Length)];
         // transform.GetChild(1).GetComponent<SpriteRenderer>().color = startColor;
@@ -40,7 +41,6 @@ public class Snake : MonoBehaviour
         Destroy(obj, 3);
         int random = Random.Range(0, listTag.Count - 1);
         indexToTransform = random;
-        Debug.Log("Random:" + random);
         gameObject.transform.GetChild(0).tag = listTag[random];
         transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = listSnakeTail[random];
     }
@@ -49,7 +49,6 @@ public class Snake : MonoBehaviour
         if (!checkSpecial)
         {
             int div = currentHead * 4 + index % 4;
-            Debug.Log("div: " + div);
             transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = listSnakeHead[div];
             circle.GetComponent<LineRenderer>().material = listMaterial[index % 4];
             tag = listTag[index % 4];
@@ -98,15 +97,20 @@ public class Snake : MonoBehaviour
                 transform.GetChild(0).eulerAngles = new Vector3(0, 0, -Mathf.Atan(headDirection.x / headDirection.y) * 180 / Mathf.PI);
                 // if (objectsPooling.Count < ObjectPooling.instance.amountToPool)
                 if (objectsPooling.Count < objectPooling.GetComponent<ObjectPooling>().amountToPool)
+                {
                     objectsPooling.Add(circle);
+                    objectsPooling[objectsPooling.Count - 1].transform.SetAsFirstSibling();
+                }
             }
             else
             {
                 objectsPooling[indexToSetActive].SetActive(false);
+                objectsPooling[indexToSetActive].transform.SetAsFirstSibling();
                 indexToSetActive++;
                 //if (indexToSetActive > ObjectPooling.instance.amountToPool - 1)
                 if (indexToSetActive > objectPooling.GetComponent<ObjectPooling>().amountToPool - 1)
                     indexToSetActive = 0;
+
                 //circle = ObjectPooling.instance.getObjectPooling();
                 circle = objectPooling.GetComponent<ObjectPooling>().getObjectPooling();
                 oldHeadPos = transform.GetChild(0).position;

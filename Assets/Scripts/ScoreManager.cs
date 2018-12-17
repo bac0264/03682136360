@@ -16,8 +16,13 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null) instance = this;
-        star = getStar();
+        _setupScore();
+        Debug.Log("SaveLoad: " + SaveLoad.instance);
+        if (SaveLoad.instance != null)
+            SaveLoad.instance.loadingStar();
         starDisplay();
+        Debug.Log("Score:" + score);
+        Debug.Log("Star: " + star);
     }
     public void scoreDisplay()
     {
@@ -37,11 +42,11 @@ public class ScoreManager : MonoBehaviour
     }
     public void setStar(int _star)
     {
-        PlayerPrefs.SetInt(starScore, _star);
+        star = _star;
     }
     public int getStar()
     {
-        return PlayerPrefs.GetInt(starScore);
+        return star;
     }
     public void setScore(int _score)
     {
@@ -61,5 +66,15 @@ public class ScoreManager : MonoBehaviour
     public int getHighScore()
     {
         return PlayerPrefs.GetInt(highScore);
+    }
+    public void _setupScore()
+    {
+        if (PlayerPrefs.GetInt("checkWatchVideo") == 1)
+        {
+            PlayerPrefs.SetInt("checkWatchVideo", 0);
+            setScore(PlayerPrefs.GetInt("currentScore"));
+            scoreDisplay();
+        }
+        else PlayerPrefs.SetInt("currentScore", 0);
     }
 }

@@ -16,19 +16,23 @@ public class PopUp : MonoBehaviour {
         }
     }
 
-    public void watchVideo()
-    {
-
-    }
     public void PlayAgain()
     {
         Time.timeScale = 1;
+        //StartCoroutine(TimetoPlayAgain());
         SceneManager.LoadScene("maingame");
     }
     IEnumerator TimetoPlayAgain()
     {
         gameObject.GetComponent<Animator>().Play("fadein");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("maingame");
+    }
+    public void WatchVideo()
+    {
+        PlayerPrefs.SetInt("currentScore", ScoreManager.instance.score);
+        PlayerPrefs.SetInt("checkWatchVideo", 1);
+        AdManager.Ins.ShowVideo();
         SceneManager.LoadScene("maingame");
     }
 }
