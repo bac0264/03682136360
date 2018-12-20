@@ -148,14 +148,14 @@ public class SnakeHead : MonoBehaviour
             Transform childs = snake.objectPooling.transform;
             Tween fade = gameObject.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
             yield return fade.WaitForCompletion();
-            for (int i = 0; i < childs.childCount - 100; i += 3)
+            for (int i = 0; i < childs.childCount - 100; i += 2)
             {
-                for (int j = i; j < (i+3); j++)
+                for (int j = i; j < (i+2); j++)
                 {
                     childs.GetChild(j).GetComponent<LineRenderer>().SetWidth(0.2f, 0.3f);                   
                 }
                 yield return new WaitForFixedUpdate();
-                for (int j = i; j < (i + 3); j++)
+                for (int j = i; j < (i + 2); j++)
                 {
                     childs.GetChild(j).gameObject.SetActive(false);
                 }
