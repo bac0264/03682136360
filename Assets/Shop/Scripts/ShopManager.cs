@@ -11,25 +11,24 @@ public class ShopManager : MonoBehaviour
     public List<GameObject> snakeHeadObjectList = new List<GameObject>();
     public List<snakeHeadItem> snakeHeadList = new List<snakeHeadItem>();
     public List<snakeHeadItem> boughtList = new List<snakeHeadItem>();
-    public int currentID;
+    public int currentID = 1 ;
     public List<Sprite> imageHeadList = new List<Sprite>();
     public Transform container;
     public GameObject prefSnakeHeadItem;
     public int count;
     private void Awake()
     {
+        currentID = PlayerPrefs.GetInt("currentID");
+        Debug.Log("currentID");
         if (instance == null) instance = this;
-        _setupStar();
     }
-    void _setupStar()
-    {
-        star = PlayerPrefs.GetInt("StarScore");
-    }
+
     private void Start()
     {
         //Load data
         SaveLoad.instance.loading();
-        //
+        SaveLoad.instance.loadingStar_2();
+        // setup ui
         if(snakeHeadList != null)
         {
             snakeHeadList[0].bought = true;
@@ -68,6 +67,7 @@ public class ShopManager : MonoBehaviour
         UpdateStar();
         UpdateUI();
     }
+    // update UI
     public void UpdateUI()
     {
         PlayerPrefs.SetInt("currentID", currentID);

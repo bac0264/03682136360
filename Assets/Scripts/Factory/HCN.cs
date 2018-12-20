@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class HCN : _Object
 {
-
+    public Vector3 spinStrength = new Vector3(0, 0, 1);
+    public bool active = false;
     private void Awake()
     {
         // Color
@@ -15,8 +16,16 @@ public class HCN : _Object
         layer = type.ToString();
         gameObject.layer = LayerMask.NameToLayer(layer);
     }
+    private void Update()
+    {
+        spin();
+    }
     public override void spin()
     {
+        if (active)
+        {
+            transform.Rotate(spinStrength);
+        }
     }
     public override void move()
     {

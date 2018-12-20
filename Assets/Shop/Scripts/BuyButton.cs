@@ -18,7 +18,6 @@ public class BuyButton : MonoBehaviour {
             Debug.Log("Error");
             return;
         }
-        // gameObject.GetComponent<Animator>().Play("PickUp");
 
         for (int i = 0; i < ShopManager.instance.snakeHeadList.Count; i++)
         {
@@ -39,6 +38,7 @@ public class BuyButton : MonoBehaviour {
                     ShopManager.instance.currentID = snakeID;
                     UpdateBuyButton();
                     SaveLoad.instance.saving();
+                    SaveLoad.instance.savingStar_2();
                 }
             }
             else

@@ -12,14 +12,19 @@ public class SnakeHead : MonoBehaviour
     public List<GameObject> deadCCEffect;
     public GameObject starExp;
     public GameObject popup;
-    int score = 0;
+    public GameObject popup_2;
+    public List<GameObject> snakeDeadEffect;
+    int score;
     int star;
     bool checkSpecialObject = true;
     public GameObject textEffect;
     private void Start()
     {
         if (ScoreManager.instance != null)
+        {
             star = ScoreManager.instance.getStar();
+            score = ScoreManager.instance.getScore();
+        }
     }
     int getIndexTag(string tag)
     {
@@ -32,13 +37,14 @@ public class SnakeHead : MonoBehaviour
     IEnumerator process(Collider2D col)
     {
         int _index = getIndexTag(col.tag);
+        int _snakeID = getIndexTag(gameObject.tag);
         if (col.gameObject.tag.Equals(gameObject.tag) && col.gameObject.layer != 12 && !col.gameObject.layer.Equals(13) && !col.gameObject.layer.Equals(14))
         {
             col.GetComponent<Collider2D>().enabled = false;
             int addScore = 1;
-            score += addScore ;
-            textEffect.transform.GetChild(0).GetComponent<Text>().text =" + "+ addScore.ToString();
-            Destroy(Instantiate(textEffect, col.transform.position + new Vector3(0,1f,0),Quaternion.identity), 2f);
+            score += addScore;
+            textEffect.transform.GetChild(0).GetComponent<Text>().text = " + " + addScore.ToString();
+            Destroy(Instantiate(textEffect, col.transform.position + new Vector3(0, 1f, 0), Quaternion.identity), 2f);
             ScoreManager.instance.setScore(score);
             ScoreManager.instance.scoreDisplay();
             ScoreManager.instance.setHighScore(score);
@@ -59,16 +65,13 @@ public class SnakeHead : MonoBehaviour
             ScoreManager.instance.setScore(score);
             ScoreManager.instance.scoreDisplay();
             ScoreManager.instance.setHighScore(score);
-            //int index = factory.getIndexLayerOfObject()
             int index = factory.getIndexTagOfObject(col.gameObject.tag);
             snake.indexToTransform = index;
-            Destroy(Instantiate(deadCCEffect[_index], col.transform.position , Quaternion.identity), 3);
-            //effect.GetComponent<ParticleSystem>().Play();
+            Destroy(Instantiate(deadCCEffect[_index], col.transform.position, Quaternion.identity), 3);
             Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
             col.transform.DOScale(0, 0.5f);
             yield return fadeout.WaitForCompletion();
             Destroy(col.gameObject);
-            //snake.Change(index,snake.GetComponent<Snake>().circle);
         }
         // Star
         else if (col.gameObject.layer.Equals(13))
@@ -82,6 +85,10 @@ public class SnakeHead : MonoBehaviour
                 Destroy(Instantiate(textEffect, col.transform.position + new Vector3(0, 1, 0), Quaternion.identity), 2f);
                 ScoreManager.instance.setStar(star);
                 ScoreManager.instance.starDisplay();
+                if (SaveLoad.instance != null)
+                {
+                    SaveLoad.instance.savingStar();
+                }
                 Destroy(Instantiate(starExp, col.transform.position, Quaternion.identity), 3);
                 Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
                 col.transform.DOScale(0, 0.5f);
@@ -100,8 +107,6 @@ public class SnakeHead : MonoBehaviour
             col.GetComponent<Collider2D>().enabled = false;
             int pos = factory.getIndexTagOfObject(gameObject.tag);
             string tagName = gameObject.tag;
-            //int index = factory.getIndexLayerOfObject()
-            //snake.indexToTransform = pos + 4;
             gameObject.tag = "Special";
             Destroy(Instantiate(starExp, col.transform.position, Quaternion.identity), 3);
             Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
@@ -119,18 +124,43 @@ public class SnakeHead : MonoBehaviour
                 checkSpecialObject = true;
             }
         }
+        // Die
         else
         {
-            Time.timeScale = 1;
+            Destroy(Instantiate(snakeDeadEffect[_snakeID], gameObject.transform.position, Quaternion.identity), 2f);
             Camera.main.GetComponent<MainGameManager>().enabled = false;
             factory.gameObject.SetActive(false);
             snake.enabled = false;
             if (col.gameObject.GetComponentInParent<Animator>() != null)
                 col.gameObject.GetComponentInParent<Animator>().enabled = false;
             snake.transform.GetChild(0).GetComponent<Collider2D>().enabled = false;
-            Instantiate(popup);
+            Transform childs = snake.objectPooling.transform;
+            Tween fade = gameObject.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
+            yield return fade.WaitForCompletion();
+            for (int i = 0; i < childs.childCount - 100; i += 2)
+            {
+                for (int j = i; j < (i + 2); j++)
+                {
+                    childs.GetChild(j).GetComponent<LineRenderer>().SetWidth(0.2f, 0.3f);
+                }
+                yield return new WaitForFixedUpdate();
+                for (int j = i; j < (i + 2); j++)
+                {
+                    childs.GetChild(j).gameObject.SetActive(false);
+                }
+            }
+            if (Application.internetReachability != NetworkReachability.NotReachable)
+            {
+                Instantiate(popup);
+            }
+            else
+            {
+                Instantiate(popup_2);
+            }
         }
+
     }
+
     IEnumerator process_2(Collider2D col)
     {
         int _index = getIndexTag(col.tag);
@@ -140,7 +170,7 @@ public class SnakeHead : MonoBehaviour
             int addScore = 1;
             score += addScore;
             textEffect.transform.GetChild(0).GetComponent<Text>().text = " + " + addScore.ToString();
-            Destroy(Instantiate(textEffect, col.transform.position + new Vector3(0, 1, 0) , Quaternion.identity), 2f);
+            Destroy(Instantiate(textEffect, col.transform.position + new Vector3(0, 1, 0), Quaternion.identity), 2f);
             ScoreManager.instance.setScore(score);
             ScoreManager.instance.scoreDisplay();
             ScoreManager.instance.setHighScore(score);
@@ -180,10 +210,15 @@ public class SnakeHead : MonoBehaviour
                 col.GetComponent<Collider2D>().enabled = false;
                 star++;
                 int addScore = 1;
+
                 textEffect.transform.GetChild(0).GetComponent<Text>().text = " + " + addScore.ToString();
-                Destroy(Instantiate(textEffect , col.transform.position + new Vector3(0, 1, 0), Quaternion.identity), 2f);
+                Destroy(Instantiate(textEffect, col.transform.position + new Vector3(0, 1, 0), Quaternion.identity), 2f);
                 ScoreManager.instance.setStar(star);
                 ScoreManager.instance.starDisplay();
+                if (SaveLoad.instance != null)
+                {
+                    SaveLoad.instance.savingStar();
+                }
                 Destroy(Instantiate(starExp, col.transform.position, Quaternion.identity), 3);
                 Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
                 col.transform.DOScale(0, 0.5f);
@@ -194,25 +229,10 @@ public class SnakeHead : MonoBehaviour
         else if (col.gameObject.tag.Equals("Special"))
         {
             col.GetComponent<Collider2D>().enabled = false;
-            //int pos = factory.getIndexTagOfObject(gameObject.tag);
-            //string tagName = gameObject.tag;
-            ////int index = factory.getIndexLayerOfObject()
-            //snake.indexToTransform = pos + 4;
-            //gameObject.tag = "Special";
             Destroy(Instantiate(starExp, col.transform.position, Quaternion.identity), 3);
             Tween fadeout = col.transform.GetComponent<SpriteRenderer>().DOColor(new Color(1, 1, 1, 0), 0.3f);
             yield return fadeout.WaitForCompletion();
             Destroy(col.gameObject);
-            //yield return new WaitForSeconds(4f);
-            //if (checkSpecialObject)
-            //{
-            //    snake.indexToTransform = pos;
-            //    gameObject.tag = tagName;
-            //}
-            //else
-            //{
-            //    checkSpecialObject = true;
-            //}
         }
     }
     public void OnTriggerEnter2D(Collider2D col)

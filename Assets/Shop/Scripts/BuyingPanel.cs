@@ -37,6 +37,7 @@ public class BuyingPanel : MonoBehaviour
             prefabTextEffect.transform.GetChild(0).GetComponent<Text>().text = "-" + requestStar;
             Instantiate(prefabTextEffect, ShopManager.instance.snakeHeadObjectList[i].transform);
             SaveLoad.instance.saving();
+            SaveLoad.instance.savingStar_2();
 
         }
         else

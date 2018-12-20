@@ -16,7 +16,6 @@ public class Snake : MonoBehaviour
     public List<Sprite> listSnakeHead; // color of snake head
     public List<Material> listMaterial; // color of snake
     public List<string> listTag = new List<string>();
-    public List<Sprite> listSnakeTail; // color of tail color
     public List<Sprite> listSpecialHead;
     public List<Material> specialList;
     public string tag;
@@ -33,27 +32,25 @@ public class Snake : MonoBehaviour
     public int currentHead;
     private void Awake()
     {
+        // set up
+        transform.GetChild(0).gameObject.SetActive(true);
         currentHead = PlayerPrefs.GetInt("currentID") - 1 ;
-        //Color startColor = ColorOfSnake[Random.Range(0, ColorOfSnake.Length)];
-        // transform.GetChild(1).GetComponent<SpriteRenderer>().color = startColor;
-        GameObject obj = GameObject.FindGameObjectWithTag("Tail");
-        Destroy(obj, 3);
         int random = Random.Range(0, listTag.Count - 1);
         indexToTransform = random;
-        Debug.Log("Random:" + random);
         gameObject.transform.GetChild(0).tag = listTag[random];
-        transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = listSnakeTail[random];
     }
+    // thay doi Material khi an special item or change color
     IEnumerator timeToChange(int index, GameObject _circle)
     {
+        
         if (!checkSpecial)
         {
             int div = currentHead * 4 + index % 4;
-            Debug.Log("div: " + div);
             transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = listSnakeHead[div];
             circle.GetComponent<LineRenderer>().material = listMaterial[index % 4];
             tag = listTag[index % 4];
             transform.GetChild(0).tag = tag;
+            //smokesEffect[index % 4].SetActive(false);
             if (checkSmoke)
             {
                 checkSmoke = false;
@@ -68,64 +65,59 @@ public class Snake : MonoBehaviour
         else
         {
             checkSmoke = true;
-
             smokeEffect.SetActive(true);
-            // circleEffect.SetActive(true);
-            //transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = listSpecialHead[index % 4];
             _circle.GetComponent<LineRenderer>().material = listMaterial[index % 4];
             smokeEffect.transform.position = new Vector3(_circle.GetComponent<LineRenderer>().GetPosition(0).x, _circle.GetComponent<LineRenderer>().GetPosition(0).y, smokeEffect.transform.position.z);
             smokeEffect.transform.eulerAngles = transform.GetChild(0).eulerAngles;
-            //circleEffect.transform.position = new Vector3(_circle.GetComponent<LineRenderer>().GetPosition(1).x, _circle.GetComponent<LineRenderer>().GetPosition(1).y, circleEffect.transform.position.z);
-            //circleEffect.transform.eulerAngles = transform.GetChild(0).eulerAngles;
         }
         yield return null;
     }
     // Update is called once per frame
     void LateUpdate()
     {
+        // setup vi tri cac object pooling
         if (objectPooling != null)
         {
-            // circle = ObjectPooling.instance.getObjectPooling();
             circle = objectPooling.GetComponent<ObjectPooling>().getObjectPooling();
             if (circle != null)
             {
                 oldHeadPos = transform.GetChild(0).position;
                 Vector3 temp = transform.GetChild(0).position;
-                transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.22f);
-                // temp = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.1f);
-                //transform.GetChild(0).position = new Vector3(temp.x, transform.GetChild(0).position.y, transform.GetChild(0).position.z);
+                transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.25f);
                 Vector2 headDirection = (transform.GetChild(0).position - oldHeadPos);
                 transform.GetChild(0).eulerAngles = new Vector3(0, 0, -Mathf.Atan(headDirection.x / headDirection.y) * 180 / Mathf.PI);
-                // if (objectsPooling.Count < ObjectPooling.instance.amountToPool)
+                // neu full object pooling => circle = null
                 if (objectsPooling.Count < objectPooling.GetComponent<ObjectPooling>().amountToPool)
+                {
                     objectsPooling.Add(circle);
+                    objectsPooling[objectsPooling.Count - 1].transform.SetAsFirstSibling();
+                }
             }
+            // neu circle = null
             else
             {
+                // exchange new object pooling
                 objectsPooling[indexToSetActive].SetActive(false);
+                objectsPooling[indexToSetActive].transform.SetAsFirstSibling();
                 indexToSetActive++;
-                //if (indexToSetActive > ObjectPooling.instance.amountToPool - 1)
                 if (indexToSetActive > objectPooling.GetComponent<ObjectPooling>().amountToPool - 1)
                     indexToSetActive = 0;
-                //circle = ObjectPooling.instance.getObjectPooling();
                 circle = objectPooling.GetComponent<ObjectPooling>().getObjectPooling();
                 oldHeadPos = transform.GetChild(0).position;
                 Vector3 temp = transform.GetChild(0).position;
-                transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.45f);
+                transform.GetChild(0).position = Vector3.Lerp(transform.GetChild(0).position, Target.position, 0.25f);
                 Vector2 headDirection = (transform.GetChild(0).position - oldHeadPos);
                 transform.GetChild(0).eulerAngles = new Vector3(0, 0, -Mathf.Atan(headDirection.x / headDirection.y) * 180 / Mathf.PI);
             }
+            // render
             if (objectsPooling.Count > 0)
             {
-                // objectsPooling.RemoveAt(0);//circle.transform.position = transform.GetChild(0).position;
                 if (circle != null)
                 {
-                    //circle.GetComponent<LineRenderer>().material = listMaterial[1];
                     circle.SetActive(true);
                     circle.GetComponent<LineRenderer>().SetPosition(0, oldHeadPos);
                     circle.GetComponent<LineRenderer>().SetPosition(1, transform.GetChild(0).position);
                     StartCoroutine(timeToChange(indexToTransform, circle));
-                   // Change(indexToTransform, circle);
                 }
             }
         }

@@ -1,6 +1,6 @@
 Android
 PlayerPath?
-C:/Users/User/Desktop/CL Snake/SnakeGame_v2/snake_20181214_5.apk
+C:/Users/User/Desktop/CL Snake/SnakeGame_v2/snake20181220_5.apk
 SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/maingame.unity
@@ -29,7 +29,7 @@ f6637497451c9a030c421de4a1ad5cdb Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventH
 9a9f48464af3fc8abe851b6bcde2cfe2 Assembly-CSharp.dll:.ScoreManager
 b14b4630cc47b6e9ea8a644551a6a8cc Unity.TextMeshPro.dll:TMPro.TMP_Text
 84c93a49f39897370e942222ae59c987 Assembly-CSharp.dll:.ETFXSceneManager
-6475bc6967adf773bce18f088815b9a5 Assembly-CSharp.dll:.PopUp
+8798a82c2ee459f1abe1a6ddd9835e21 Assembly-CSharp.dll:.PopUp
 53cefe5d98cadefbab750835e70b89c0 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 da2091a04d360891450faf16cdf621f1 UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -113,7 +113,7 @@ c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.A
 0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 66b3109aa5921cf800bec17926c6adba Unity.TextMeshPro.dll:TMPro.TMP_SubMeshUI
-3c4b74c978f7f92bc4901b540cfc46fb Assembly-CSharp.dll:.SnakeHead
+2cbe3c3248b5337f4ccc4f5e9c782f63 Assembly-CSharp.dll:.SnakeHead
 e4bdd26a057ab50c4484f4d4354dd032 Assembly-CSharp.dll:.BuyButton
 201273fb4f889724fb090164b7d6c657 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -130,7 +130,7 @@ da21fc3f8056b1f91c3dd09c7bf4f90a UnityEngine.Networking.dll:UnityEngine.Networki
 fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 7ca56e063bd071986fff4f513cc4f477 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-6c32e0020cd8a1c9324a6cb14ec61c43 Assembly-CSharp.dll:.HCN
+fa997df6a4b5b6048ce919d1fd87f5ea Assembly-CSharp.dll:.HCN
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.ButtonManager
 382b8ef512fa8d6108723a01b57af65b UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
 d22c788799ee45d8676254eccf20e8b8 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
@@ -142,11 +142,12 @@ e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSyste
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 96f3ea9f23b6f08e60710ebb4af49174 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 4d54b2be87d991721976d30af769faab DemiLib.dll:DG.DemiLib.External.DeHierarchyComponent
-6c32e0020cd8a1c9324a6cb14ec61c43 Assembly-CSharp.dll:.TriAngle
+fa997df6a4b5b6048ce919d1fd87f5ea Assembly-CSharp.dll:.TriAngle
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.snakeItem
 59f130e2449b6d8fb19f4c7bf2c2f791 Assembly-CSharp.dll:EpicToonFX.ETFXMouseOrbit
 c77cecabca23adaa153a754693c28ca2 Assembly-CSharp.dll:EpicToonFX.ETFXLoopScript
-6c32e0020cd8a1c9324a6cb14ec61c43 Assembly-CSharp.dll:.Circle
+2a9dda91bea1c81a8697580a01afd7d4 Assembly-CSharp.dll:.Circle
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.AdManager
 f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 bf0658f50b56b1134930057f5ea1565f Assembly-CSharp.dll:.Shop_PopUp
 8eb3e1f64d2087333a9c1cc452167b67 Assembly-CSharp.dll:EpicToonFX.ETFXFireProjectile
@@ -190,6 +191,7 @@ e033f131358cea5a0eabf9561e781deb UnityEngine.TestRunner.dll:UnityEngine.TestTool
 28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
 155cab2f1f57e2dd7a68a8e4085c1036 Assembly-CSharp.dll:EpicToonFX.ETFXButtonScript
 eb4450ca12671cce5ffaf7ea5f9c885c Assembly-CSharp.dll:.ParticleEffectsLibrary
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:GoogleMobileAds.Common.MobileAdsEventExecutor
 d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 486cd95c82d8305219c352c06b776e1f UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
@@ -204,7 +206,7 @@ b12508de8061fc30c785ac01869eb6af Assembly-CSharp.dll:EpicToonFX.ETFXLightFade
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 3dce1fab54c9109f286b1e70e263dc09 Assembly-CSharp.dll:.MainGameManager
 c9c454f0ed6ef1995762a8a0ea0b5ce0 Assembly-CSharp.dll:.LevelChanger
-548efd074a5559171291474da61caed2 Assembly-CSharp.dll:.Snake
+9dfce7703dd6d1efcfc3e14e4fb21ba8 Assembly-CSharp.dll:.Snake
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 5ddb05eaa4916d9869e1ce9baeeb342e Assembly-CSharp.dll:.PEButtonScript
